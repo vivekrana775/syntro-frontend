@@ -1,10 +1,15 @@
-import { forwardRef, type ComponentPropsWithoutRef, type FunctionComponent, type SVGProps } from 'react';
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type FunctionComponent,
+  type SVGProps,
+} from 'react';
 
 import ArrowBottom from '@/assets/icons/arrow-bottom.svg?react';
 import ArrowRight from '@/assets/icons/arrow-right.svg?react';
 import ArrowSwap from '@/assets/icons/arrow-swap.svg?react';
-import ArrowTop from '@/assets/icons/arrow-top.svg?react';
 import ArrowTopRight from '@/assets/icons/arrow-top-right.svg?react';
+import ArrowTop from '@/assets/icons/arrow-top.svg?react';
 import Calendar from '@/assets/icons/calendar.svg?react';
 import CheckDouble from '@/assets/icons/check-double.svg?react';
 import Close from '@/assets/icons/close.svg?react';
