@@ -22,7 +22,7 @@ export interface NavItemProps {
 }
 
 const base =
-  'flex h-12 w-full items-center gap-2.5 rounded-xl py-3 pl-4.5 font-display text-nav transition-colors';
+  'flex h-12 w-full items-center gap-2.5 rounded-xl py-3 pl-4.5 text-left font-display text-nav transition-colors';
 const activeClasses = 'bg-paper font-medium text-vermilion';
 const inactiveClasses = 'font-normal text-graphite hover:bg-paper';
 

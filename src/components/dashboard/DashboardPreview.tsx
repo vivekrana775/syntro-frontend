@@ -15,7 +15,8 @@ const noop = () => undefined;
 
 /**
  * Tilted, scaled dashboard used as artwork in the auth promo panel (1:2467). Figma's copy is a
- * 1000px-wide (×0.6944) clone rotated ~8.5°, anchored at (225, 192) inside the panel.
+ * 0.6944-scale clone with a slight skew (x-axis ≈4.5°, y-axis ≈7°); the matrix below was fitted to
+ * the Figma render from six landmarks and maps the 1440px layout into panel coordinates.
  */
 export function DashboardPreview({ data, navigation, user, className }: DashboardPreviewProps) {
   return (
@@ -24,7 +25,7 @@ export function DashboardPreview({ data, navigation, user, className }: Dashboar
       // `inert` keeps the cloned controls out of the tab order; React 18 only forwards it as a string.
       {...({ inert: '' } as Record<string, string>)}
       className={cn(
-        'pointer-events-none absolute left-[225px] top-[192px] flex w-[1440px] origin-top-left rotate-[8.5deg] scale-[0.6944] select-none overflow-hidden rounded-[32px] bg-page',
+        'pointer-events-none absolute left-0 top-0 flex w-[1440px] origin-top-left select-none overflow-hidden rounded-[32px] bg-page [transform:matrix(0.7026,0.0548,-0.0848,0.6968,90.9,194.4)]',
         className,
       )}
     >
