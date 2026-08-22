@@ -66,5 +66,10 @@ export default tseslint.config(
       ],
     },
   },
+  {
+    // Node tooling: console output is the point of these scripts.
+    files: ['scripts/**/*.ts'],
+    rules: { 'no-console': 'off' },
+  },
   prettier,
 );

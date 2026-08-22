@@ -23,6 +23,8 @@ async function main() {
   await mkdir(outDir, { recursive: true });
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: DESKTOP, deviceScaleFactor: 1 });
+  page.setDefaultTimeout(30_000);
+  page.setDefaultNavigationTimeout(30_000);
 
   await page.goto(`${baseUrl}/sign-in`, { waitUntil: 'networkidle' });
   await shoot(page, 'sign-in@1440');
