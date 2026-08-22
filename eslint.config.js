@@ -50,7 +50,16 @@ export default tseslint.config(
         'error',
         {
           groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
-          pathGroups: [{ pattern: '@/**', group: 'internal' }],
+          pathGroups: [
+            // react first, then third-party, then `@/` aliases, then relative (project convention)
+            {
+              pattern: '{react,react-dom,react-dom/**,react/**}',
+              group: 'builtin',
+              position: 'after',
+            },
+            { pattern: '@/**', group: 'internal' },
+          ],
+          pathGroupsExcludedImportTypes: ['builtin'],
           'newlines-between': 'always',
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
