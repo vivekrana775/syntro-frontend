@@ -11,12 +11,7 @@ export interface AuthPromoPanelProps {
 /** Vermilion marketing panel (1:2466) with the headline and room for the dashboard preview. */
 export function AuthPromoPanel({ preview, className }: AuthPromoPanelProps) {
   return (
-    <aside
-      className={cn(
-        'min-h-auth-panel relative w-promo shrink-0 flex-col overflow-hidden rounded-2xl bg-vermilion',
-        className,
-      )}
-    >
+    <aside className={cn('relative flex-col overflow-hidden rounded-2xl bg-vermilion', className)}>
       <h2 className="absolute left-1/2 top-[52px] w-[350px] -translate-x-1/2 text-center font-display text-3xl font-bold text-paper">
         Procure hardware at the <br />
         speed of AI
