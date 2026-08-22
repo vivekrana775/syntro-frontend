@@ -66,27 +66,41 @@ toggle, selected option card. Hover / focus / disabled states are not designed.
 
 ## 0.3 Screen inventory
 
-| Figma frame             | Route        | Layout     | Composition                                                           |
-| ----------------------- | ------------ | ---------- | --------------------------------------------------------------------- |
-| `1:2465` Sign In        | `/sign-in`   | AuthLayout | Logo, heading, segmented control, Email + Password, Login, social row |
-| `1:2840` Sign Up        | `/sign-up`   | AuthLayout | Same; Name + Email + Password, no "Forgot Password?"                  |
-| `1:1057` / `1:746` Main | `/dashboard` | AppLayout  | Greeting + search + filter, 4 + 3 stat cards, 2 charts, review list   |
-| `1:1376` Add Order v1   | `/dashboard` | modal      | "What do you need to source?" — two option cards                      |
-| `1:2085` Filter         | `/dashboard` | modal      | "Filter" — Project select                                             |
+| Figma frame                        | Route                           | Layout     | Composition                                                             |
+| ---------------------------------- | ------------------------------- | ---------- | ----------------------------------------------------------------------- |
+| `1:2465` Sign In                   | `/sign-in`                      | AuthLayout | Logo, heading, segmented control, Email + Password, Login, social row   |
+| `1:2840` Sign Up                   | `/sign-up`                      | AuthLayout | Same; Name + Email + Password, no "Forgot Password?"                    |
+| `1:1057` / `1:746` Main            | `/dashboard`                    | AppLayout  | Greeting + search + filter, 4 + 3 stat cards, 2 charts, review list     |
+| `1:1376` Add Order v1              | `/dashboard`                    | modal      | "What do you need to source?" — two option cards                        |
+| `1:2085` Filter                    | `/dashboard`                    | modal      | "Filter" — Project select                                               |
+| `1:22719` Action Queue             | `/review/action-queue`          | AppLayout  | Heading + subtitle, Needs You \| Team pill tabs, inbox rows             |
+| `1:25976` Action Queue_Detail      | `/review/action-queue/:itemId`  | AppLayout  | Toolbar with pager, email, classifier notes, routing form, "Not an RFQ" |
+| `1:22831` Action Queue_Team        | `/review/action-queue?tab=team` | AppLayout  | Grouped table (Escalations, Shipments) with eye actions                 |
+| `1:22986` Action Queue_Team Detail | `/review/action-queue/:itemId`  | AppLayout  | Toolbar with pager, escalation text, Resolve                            |
+| `1:23106` Sources                  | `/review/sources`               | AppLayout  | Heading + Sync Now, five pill tabs, "Unrouted (04)" rows                |
+| `1:23239` Sources detail           | `/review/sources/:sourceId`     | AppLayout  | Breadcrumb topbar, email with initials avatar, "Skipped by agent" aside |
 
 `1:1731` Add Order v2 (stacked cards) is intentionally **not** built (user decision).
 
 ## 0.4 Ambiguities and assumptions
 
-| #   | Ambiguity                                                           | Assumption taken                                                                                                              |
-| --- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| 1   | No hover / focus / disabled / pressed states                        | Primary hover → `vermilion-deep`; neutral/nav hover → `paper`/`surface`; focus → 2 px vermilion ring; disabled → 40 % opacity |
-| 2   | "Search..." pill only appears on the modal frames, not on `Main`    | Included on the dashboard header (3 of 4 dashboard frames show it; user confirmed)                                            |
-| 3   | Logo wordmark uses Helvetica Neue (not available on Google Fonts)   | Rendered with a `Helvetica Neue → Helvetica → Arial` stack; swap for an outlined SVG when provided                            |
-| 4   | Promo panel dashboard preview (`1:2467`) is a rotated/scaled clone  | Re-rendered from the real dashboard components with a transform tuned against the Figma screenshot                            |
-| 5   | Chart bar values are not labelled                                   | Heights reverse-engineered from the frames; stored in mocks as approximations                                                 |
-| 6   | Select dropdown menu is not designed                                | Menu styled with the input chrome (white, radius 16, subtle border, 48 px items)                                              |
-| 7   | Theme toggle has no dark theme anywhere in the file                 | Toggle keeps local state only; app stays light                                                                                |
-| 8   | Desktop-only file                                                   | ≥1280 exact; 1024–1279 stat rows wrap 2-up and charts stack; <1024 sidebar becomes a drawer and the promo panel hides         |
-| 9   | Sign Up button reads "Login"; "Shippments", "at_risk" typos         | Copied verbatim — Figma is the source of truth                                                                                |
-| 10  | Paper-on-vermilion text (~3.3:1) and 40 % placeholders fail WCAG AA | Kept as designed; reported in the deviation report                                                                            |
+| #   | Ambiguity                                                                            | Assumption taken                                                                                                              |
+| --- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| 1   | No hover / focus / disabled / pressed states                                         | Primary hover → `vermilion-deep`; neutral/nav hover → `paper`/`surface`; focus → 2 px vermilion ring; disabled → 40 % opacity |
+| 2   | "Search..." pill only appears on the modal frames, not on `Main`                     | Included on the dashboard header (3 of 4 dashboard frames show it; user confirmed)                                            |
+| 3   | Logo wordmark uses Helvetica Neue (not available on Google Fonts)                    | Rendered with a `Helvetica Neue → Helvetica → Arial` stack; swap for an outlined SVG when provided                            |
+| 4   | Promo panel dashboard preview (`1:2467`) is a rotated/scaled clone                   | Re-rendered from the real dashboard components with a transform tuned against the Figma screenshot                            |
+| 5   | Chart bar values are not labelled                                                    | Heights reverse-engineered from the frames; stored in mocks as approximations                                                 |
+| 6   | Select dropdown menu is not designed                                                 | Menu styled with the input chrome (white, radius 16, subtle border, 48 px items)                                              |
+| 7   | Theme toggle has no dark theme anywhere in the file                                  | Toggle keeps local state only; app stays light                                                                                |
+| 8   | Desktop-only file                                                                    | ≥1280 exact; 1024–1279 stat rows wrap 2-up and charts stack; <1024 sidebar becomes a drawer and the promo panel hides         |
+| 9   | Sign Up button reads "Login"; "Shippments", "at_risk" typos                          | Copied verbatim — Figma is the source of truth                                                                                |
+| 10  | Paper-on-vermilion text (~3.3:1) and 40 % placeholders fail WCAG AA                  | Kept as designed; reported in the deviation report                                                                            |
+| 11  | First inbox row is filled `surface` with no other state drawn                        | Treated as the hover state                                                                                                    |
+| 12  | Only one detail is designed per list (Meridian RFQ, Meridian escalation, Nova email) | Other items derive their detail from their own row text; no copy invented                                                     |
+| 13  | Sources list draws 3 rows but says "(04)" and the detail is Nova                     | Nova appended as the 4th row; its pager reads "04 of 04"                                                                      |
+| 14  | Sources tabs other than Skipped are not designed                                     | They filter the same fixture; empty tabs show a muted line                                                                    |
+| 15  | Detail toolbar glyphs are 20px with no hit area                                      | 24px icon buttons, toolbar padded to keep Figma's 68px height                                                                 |
+| 16  | Team table column widths only implied by text positions                              | 162 / flexible / 216 / 99px columns with 18px cell padding reproduce x = 18/180/767/983                                       |
+| 17  | Which sidebar group is open differs per screen (Workflow on Dashboard, Review here)  | The group containing the current route opens; otherwise `defaultOpen`                                                         |
+| 18  | Figma line-height rounding (Manrope 18 → 25, Inter 16 → 19) vs browser metrics       | Kept browser metrics; 1–3px drift documented in the deviation report                                                          |

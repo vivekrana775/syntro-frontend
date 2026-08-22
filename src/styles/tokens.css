@@ -10,6 +10,9 @@
   --c-neutral: 247 247 247; /* #F7F7F7 – neutral buttons, option-card chips */
   --c-white: 255 255 255;
   --c-blue: 61 115 202; /* #3D73CA – info badge */
+  --c-green: 0 158 107; /* #009E6B – success pills (tracker 1:20412) */
+  --c-amber: 194 117 0; /* #C27500 – warning pills, verify-reply border (1:20043) */
+  --c-sand: 243 235 224; /* #F3EBE0 – parsed-reply callout (1:20052) */
   --c-facebook: 28 120 241; /* #1C78F1 */
   --c-line: 213 213 213; /* #D5D5D5 – nav tree connector */
   --c-hatch: 231 231 231; /* #E7E7E7 – chart hatch lines */

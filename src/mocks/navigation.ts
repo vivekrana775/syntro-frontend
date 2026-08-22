@@ -10,11 +10,24 @@ export const navigation: NavEntry[] = [
     defaultOpen: true,
     children: [
       { id: 'quotes', label: 'Quotes', icon: 'sort' },
-      { id: 'purchase-orders', label: 'Purchase Orders', icon: 'arrow-swap' },
+      {
+        id: 'purchase-orders',
+        label: 'Purchase Orders',
+        icon: 'arrow-swap',
+        to: ROUTES.purchaseOrders,
+      },
       { id: 'build-plan', label: 'Build Plan', icon: 'note' },
     ],
   },
-  { id: 'review', label: 'Review', icon: 'edit', children: [] },
+  {
+    id: 'review',
+    label: 'Review',
+    icon: 'edit',
+    children: [
+      { id: 'action-queue', label: 'Action Queue', icon: 'note', to: ROUTES.actionQueue },
+      { id: 'sources', label: 'Sources', icon: 'arrow-swap', to: ROUTES.sources },
+    ],
+  },
   { id: 'library', label: 'Library', icon: 'document', children: [] },
   { id: 'insights', label: 'Insights', icon: 'status', children: [] },
 ];

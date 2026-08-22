@@ -12,6 +12,12 @@ const outDir = path.resolve('docs/screenshots');
 
 const DESKTOP = { width: 1440, height: 1024 };
 const RESPONSIVE_WIDTHS = [1280, 1024, 768, 375];
+const RESPONSIVE_ROUTES = [
+  { path: 'sign-in', name: 'sign-in' },
+  { path: 'dashboard', name: 'dashboard' },
+  { path: 'review/action-queue?tab=team', name: 'action-queue-team' },
+  { path: 'review/sources/src-nova', name: 'sources-detail' },
+];
 
 async function shoot(page: Page, name: string, fullPage = false) {
   await page.evaluate(() => document.fonts.ready);
@@ -46,11 +52,40 @@ async function main() {
   await shoot(page, 'dashboard-filter@1440');
   await page.keyboard.press('Escape');
 
+  // Figma fills the first inbox row with `surface`; it is treated as the hover state.
+  await page.goto(`${baseUrl}/review/action-queue`, { waitUntil: 'networkidle' });
+  await page
+    .getByRole('link', { name: /Inbound RFQ Replies/ })
+    .first()
+    .hover();
+  await shoot(page, 'action-queue@1440');
+
+  await page.goto(`${baseUrl}/review/action-queue/rfq-meridian`, { waitUntil: 'networkidle' });
+  await shoot(page, 'action-queue-detail@1440-full', true);
+
+  await page.goto(`${baseUrl}/review/action-queue?tab=team`, { waitUntil: 'networkidle' });
+  await shoot(page, 'action-queue-team@1440');
+
+  await page.goto(`${baseUrl}/review/action-queue/esc-meridian-tolerance`, {
+    waitUntil: 'networkidle',
+  });
+  await shoot(page, 'action-queue-team-detail@1440');
+
+  await page.goto(`${baseUrl}/review/sources`, { waitUntil: 'networkidle' });
+  await page
+    .getByRole('link', { name: /Delta Circuits/ })
+    .first()
+    .hover();
+  await shoot(page, 'sources@1440');
+
+  await page.goto(`${baseUrl}/review/sources/src-nova`, { waitUntil: 'networkidle' });
+  await shoot(page, 'sources-detail@1440');
+
   for (const width of RESPONSIVE_WIDTHS) {
     await page.setViewportSize({ width, height: 1024 });
-    for (const route of ['sign-in', 'dashboard']) {
+    for (const { path: route, name } of RESPONSIVE_ROUTES) {
       await page.goto(`${baseUrl}/${route}`, { waitUntil: 'networkidle' });
-      await shoot(page, `${route}@${width}`, true);
+      await shoot(page, `${name}@${width}`, true);
     }
   }
 

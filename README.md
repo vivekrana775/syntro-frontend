@@ -27,12 +27,16 @@ Requires Node ≥ 20. Fonts (Manrope, Inter) load from Google Fonts.
 
 ## Routes
 
-| Route        | Figma frame      | Notes                                                       |
-| ------------ | ---------------- | ----------------------------------------------------------- |
-| `/`          | —                | Redirects to `/sign-in`                                     |
-| `/sign-in`   | `1:2465` Sign In | Tabs navigate between sign-in and sign-up                   |
-| `/sign-up`   | `1:2840` Sign Up |                                                             |
-| `/dashboard` | `1:746` Main     | Hosts the New Order (`1:1701`) and Filter (`1:2410`) modals |
+| Route                          | Figma frame                                 | Notes                                                                                 |
+| ------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `/`                            | —                                           | Redirects to `/sign-in`                                                               |
+| `/sign-in`                     | `1:2465` Sign In                            | Tabs navigate between sign-in and sign-up                                             |
+| `/sign-up`                     | `1:2840` Sign Up                            |                                                                                       |
+| `/dashboard`                   | `1:746` Main                                | Hosts the New Order (`1:1701`) and Filter (`1:2410`) modals                           |
+| `/review/action-queue`         | `1:22719` Action Queue, `1:22831` Team      | `?tab=needs-you` (default) or `?tab=team`                                             |
+| `/review/action-queue/:itemId` | `1:25976` RFQ detail, `1:22986` Team detail | Unknown ids redirect to the list; purchase-order ids render the PO detail (`1:20501`) |
+| `/review/sources`              | `1:23106` Sources                           | `?tab=skipped` (default), `all`, `procurement`, `questions`, `extracted`              |
+| `/review/sources/:sourceId`    | `1:23239` Sources detail                    | Topbar shows the "Sources › subject" breadcrumb                                       |
 
 ## Folder structure
 
@@ -44,9 +48,12 @@ src/
     layout/     Sidebar, Topbar, AppLayout, AuthLayout, AuthPromoPanel
     auth/       Auth card composites (heading, form, social row)
     dashboard/  Dashboard composites, modals and the promo preview
+    review/     Shared review pieces: inbox rows, detail toolbar/heading, email body, hairline
+    action-queue/  Needs You list, Team table, RFQ routing and escalation details
+    sources/    Sources list, opened email and the "Skipped by agent" panel
   pages/        One folder per route; the only place mocks are imported
-  hooks/        useDisclosure
-  lib/          cn(), route constants
+  hooks/        useDisclosure, useTabParam (`?tab=` state)
+  lib/          cn(), route constants and path builders, review helpers (pager, lookups)
   styles/       tokens.css (design tokens), globals.css, fonts.css
   types/        Domain types shared by mocks and components
   mocks/        Static, typed fixtures

@@ -2,18 +2,22 @@ import { forwardRef, useState, type HTMLAttributes } from 'react';
 
 import { Avatar, Divider, Icon, IconButton, ThemeToggle, type Theme } from '@/components/ui';
 import { cn } from '@/lib/cn';
-import type { User } from '@/types';
+import type { BreadcrumbItem, User } from '@/types';
+
+import { Breadcrumb } from './Breadcrumb';
 
 export interface TopbarProps extends HTMLAttributes<HTMLElement> {
   title: string;
   user: User;
+  /** Replaces the plain title with a trail whose last item is the page heading (1:20591). */
+  breadcrumb?: BreadcrumbItem[];
   /** Shown below the `lg` breakpoint to open the navigation drawer (not in Figma). */
   onMenuClick?: () => void;
 }
 
 /** 104px page header (1:1135): title, theme toggle, notifications and the user pill. */
 export const Topbar = forwardRef<HTMLElement, TopbarProps>(function Topbar(
-  { title, user, onMenuClick, className, ...rest },
+  { title, user, breadcrumb, onMenuClick, className, ...rest },
   ref,
 ) {
   // Figma designs a light theme only; the toggle is presentational state.
@@ -40,7 +44,11 @@ export const Topbar = forwardRef<HTMLElement, TopbarProps>(function Topbar(
             <Icon name="menu" />
           </IconButton>
         ) : null}
-        <h1 className="truncate font-display text-xl font-medium text-graphite">{title}</h1>
+        {breadcrumb ? (
+          <Breadcrumb items={breadcrumb} />
+        ) : (
+          <h1 className="truncate font-display text-xl font-medium text-graphite">{title}</h1>
+        )}
       </div>
 
       <div className="flex shrink-0 items-center gap-3">

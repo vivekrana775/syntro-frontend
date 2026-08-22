@@ -17,16 +17,34 @@ const text = (
 const sizes = {
   search: '260px',
   'option-card': '318px',
+  'modal-sm': '425px', // reply result dialogs (1:26422)
+  'po-memory': '448px', // supplier memory panel (1:20603)
   'auth-form': '500px',
   'chart-card': '544px',
   promo: '568px',
   'modal-md': '600px',
+  'po-facts': '652px', // PO detail facts list (1:20625)
   'modal-lg': '700px',
   'auth-card': '800px',
+  'po-table': '1064px', // tracker table (1:20401)
   stat: '108px',
   'option-card-h': '173px',
   'chart-card-h': '388px',
+  'po-detail-h': '628px', // PO detail card (1:20596)
   'auth-panel': '976px',
+  // tracker table columns (1:20401); cell text sits 18px into every column
+  'col-po': '162px',
+  'col-supplier': '264px',
+  'col-status': '187px',
+  'col-promised': '136px',
+  'col-total': '101px',
+  'col-owner': '115px',
+  // action-queue team table columns (1:22926); the Action column takes the remaining width
+  'col-ref': '162px',
+  'col-age': '216px',
+  'col-actions': '99px',
+  'review-table': '640px', // min width before the team table scrolls
+  aside: '348px', // Sources detail "Skipped by agent" panel (1:23365)
 };
 
 export default {
@@ -51,6 +69,9 @@ export default {
         // supporting colors observed in the screens
         neutral: channel('--c-neutral'),
         blue: channel('--c-blue'),
+        green: channel('--c-green'),
+        amber: channel('--c-amber'),
+        sand: channel('--c-sand'),
         facebook: channel('--c-facebook'),
         line: channel('--c-line'),
         hatch: channel('--c-hatch'),
@@ -97,10 +118,23 @@ export default {
         pill: '40px',
       },
       spacing: {
+        // Figma draws 1px strokes inside the padding: bordered boxes pad 1px less (17/23) so
+        // their content lands on the same pixel as the design's 18/24.
+        4.25: '17px',
         4.5: '18px',
+        5.25: '21px', // bordered 68px detail toolbar: 22 + 24 + 21 + 1px border (1:26068)
+        5.5: '22px', // detail toolbar: 24px hit areas around Figma's 20px glyphs (1:26068)
+        5.75: '23px',
         13: '52px',
         26: '104px',
+        50: '200px', // result-dialog illustration box
         70: '280px',
+      },
+      gridTemplateColumns: {
+        // watchlist rows (1:20017): PO# / vendor / meta / trailing / view action
+        watchlist: '130px 378px 229px minmax(0, 1fr) auto',
+        // PO detail modal facts (1:20254): label column, value starts at x333
+        'modal-facts': '333px minmax(0, 1fr)',
       },
       width: sizes,
       maxWidth: sizes,

@@ -30,33 +30,51 @@ States listed as **assumed** are not designed in Figma; see `docs/deviation-repo
 
 \* assumed state.
 
+Additions for the review screens: `Button` gains `variant: paper` (Sync Now, 1:23230); `Icon` gains
+`arrow-left`, `chevron-left`, `refresh-double`, `time-circle` and is rendered at 16px inside the Team
+table's eye buttons (`IconButton size={32} variant="surface"`); `SegmentedControl` is used with
+`tone="paper" fit="hug"` for the page tabs (1:22826, 1:23215).
+
 ## Layout — `src/components/layout`
 
-| Component        | File                 | Figma refs     | Notes                                                             |
-| ---------------- | -------------------- | -------------- | ----------------------------------------------------------------- |
-| `NavItem`        | `NavItem.tsx`        | 1:1072, 1:1088 | Link (`NavLink`) or button; `active`, `dim`, `trailing`           |
-| `NavGroup`       | `NavGroup.tsx`       | 1:1079         | Expand/collapse with tree connector; `defaultOpen`                |
-| `Sidebar`        | `Sidebar.tsx`        | 1:1058         | Logo, "New Order" CTA, nav tree                                   |
-| `Topbar`         | `Topbar.tsx`         | 1:1135         | Title, theme toggle, notifications, user pill; menu button `<lg`* |
-| `AppLayout`      | `AppLayout.tsx`      | 1:1057         | Sidebar + topbar + `<main>`; drawer below `lg`*                   |
-| `AuthLayout`     | `AuthLayout.tsx`     | 1:2465         | Paper card + promo panel; promo hidden below `xl`*                |
-| `AuthPromoPanel` | `AuthPromoPanel.tsx` | 1:2466         | Headline + `preview` slot                                         |
+| Component        | File                 | Figma refs               | Notes                                                                      |
+| ---------------- | -------------------- | ------------------------ | -------------------------------------------------------------------------- |
+| `NavItem`        | `NavItem.tsx`        | 1:1072, 1:1088           | Link (`NavLink`) or button; `active`, `dim`, `trailing`                    |
+| `NavGroup`       | `NavGroup.tsx`       | 1:1079                   | Expand/collapse with tree connector; `defaultOpen`                         |
+| `Sidebar`        | `Sidebar.tsx`        | 1:1058                   | Logo, "New Order" CTA, nav tree                                            |
+| `Topbar`         | `Topbar.tsx`         | 1:1135                   | Title, theme toggle, notifications, user pill; menu button `<lg`*          |
+| `PageHeading`    | `PageHeading.tsx`    | 1:1158, 1:22823, 1:23226 | Title + subtitle row with a right-hand slot; composed by `DashboardHeader` |
+| `AppLayout`      | `AppLayout.tsx`      | 1:1057                   | Sidebar + topbar + `<main>`; drawer below `lg`*                            |
+| `AuthLayout`     | `AuthLayout.tsx`     | 1:2465                   | Paper card + promo panel; promo hidden below `xl`*                         |
+| `AuthPromoPanel` | `AuthPromoPanel.tsx` | 1:2466                   | Headline + `preview` slot                                                  |
 
 ## Feature composites
 
-| Component            | File                                        | Figma refs     |
-| -------------------- | ------------------------------------------- | -------------- |
-| `AuthPanel`          | `auth/AuthPanel.tsx`                        | 1:2787         |
-| `AuthHeading`        | `auth/AuthHeading.tsx`                      | 1:2795         |
-| `AuthForm`           | `auth/AuthForm.tsx`                         | 1:2803, 1:3169 |
-| `SocialLogin`        | `auth/SocialLogin.tsx`                      | 1:2822, 1:2826 |
-| `AuthFooter`         | `auth/AuthFooter.tsx`                       | 1:2839         |
-| `DashboardContent`   | `dashboard/DashboardContent.tsx`            | 1:1157         |
-| `DashboardHeader`    | `dashboard/DashboardHeader.tsx`             | 1:1158, 1:1481 |
-| `StatsGrid`          | `dashboard/StatsGrid.tsx`                   | 1:1165, 1:1201 |
-| `ChartCard`          | `dashboard/ChartCard.tsx`                   | 1:1228, 1:1288 |
-| `ReviewSection`      | `dashboard/ReviewSection.tsx`               | 1:1334         |
-| `ReviewList` / `Row` | `dashboard/ReviewList.tsx`, `ReviewRow.tsx` | 1:1343, 1:1344 |
-| `NewOrderModal`      | `dashboard/NewOrderModal.tsx`               | 1:1701         |
-| `FilterModal`        | `dashboard/FilterModal.tsx`                 | 1:2410         |
-| `DashboardPreview`   | `dashboard/DashboardPreview.tsx`            | 1:2467         |
+| Component                          | File                                                   | Figma refs                                     |
+| ---------------------------------- | ------------------------------------------------------ | ---------------------------------------------- |
+| `AuthPanel`                        | `auth/AuthPanel.tsx`                                   | 1:2787                                         |
+| `AuthHeading`                      | `auth/AuthHeading.tsx`                                 | 1:2795                                         |
+| `AuthForm`                         | `auth/AuthForm.tsx`                                    | 1:2803, 1:3169                                 |
+| `SocialLogin`                      | `auth/SocialLogin.tsx`                                 | 1:2822, 1:2826                                 |
+| `AuthFooter`                       | `auth/AuthFooter.tsx`                                  | 1:2839                                         |
+| `DashboardContent`                 | `dashboard/DashboardContent.tsx`                       | 1:1157                                         |
+| `DashboardHeader`                  | `dashboard/DashboardHeader.tsx`                        | 1:1158, 1:1481                                 |
+| `StatsGrid`                        | `dashboard/StatsGrid.tsx`                              | 1:1165, 1:1201                                 |
+| `ChartCard`                        | `dashboard/ChartCard.tsx`                              | 1:1228, 1:1288                                 |
+| `ReviewSection`                    | `dashboard/ReviewSection.tsx`                          | 1:1334                                         |
+| `ReviewList` / `Row`               | `dashboard/ReviewList.tsx`, `ReviewRow.tsx`            | 1:1343, 1:1344                                 |
+| `NewOrderModal`                    | `dashboard/NewOrderModal.tsx`                          | 1:1701                                         |
+| `FilterModal`                      | `dashboard/FilterModal.tsx`                            | 1:2410                                         |
+| `DashboardPreview`                 | `dashboard/DashboardPreview.tsx`                       | 1:2467                                         |
+| `InboxList` / `InboxRow`           | `review/InboxList.tsx`, `review/InboxRow.tsx`          | 1:22812, 1:22813, 1:23200                      |
+| `DetailToolbar`                    | `review/DetailToolbar.tsx`                             | 1:26068 (back arrow, disabled pager ends)      |
+| `DetailHeading`                    | `review/DetailHeading.tsx`                             | 1:26079, 1:23089                               |
+| `EmailBody`                        | `review/EmailBody.tsx`                                 | 1:26088, 1:23361                               |
+| `Hairline`                         | `review/Hairline.tsx`                                  | 1:26082, 1:23373 (zero-height 1px line)        |
+| `NeedsYouList`                     | `action-queue/NeedsYouList.tsx`                        | 1:22810                                        |
+| `TeamTable` / `TeamGroupRows`      | `action-queue/TeamTable.tsx`, `TeamGroupRows.tsx`      | 1:22922, 1:22932, 1:22966 (collapsible groups) |
+| `InboundRfqDetail` / `RoutingForm` | `action-queue/InboundRfqDetail.tsx`, `RoutingForm.tsx` | 1:26067, 1:26096                               |
+| `TeamItemDetail`                   | `action-queue/TeamItemDetail.tsx`                      | 1:23077                                        |
+| `SourceList`                       | `sources/SourceList.tsx`                               | 1:23197                                        |
+| `SourceEmailDetail`                | `sources/SourceEmailDetail.tsx`                        | 1:23334                                        |
+| `SkippedAside`                     | `sources/SkippedAside.tsx`                             | 1:23365                                        |

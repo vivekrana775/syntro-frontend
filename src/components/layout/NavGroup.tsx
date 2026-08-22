@@ -8,12 +8,21 @@ import { NavItem } from './NavItem';
 
 export interface NavGroupProps {
   group: NavGroupData;
+  /** Route-derived open state from `Sidebar`; falls back to `group.defaultOpen`. */
+  initialOpen?: boolean;
   className?: string;
 }
 
 /** Expandable nav section (1:1079). Child rows are indented 48px and joined by a tree connector. */
-export function NavGroup({ group, className }: NavGroupProps) {
-  const [open, setOpen] = useState(group.defaultOpen ?? false);
+export function NavGroup({ group, initialOpen, className }: NavGroupProps) {
+  const resolvedInitial = initialOpen ?? group.defaultOpen ?? false;
+  const [open, setOpen] = useState(resolvedInitial);
+  const [prevInitial, setPrevInitial] = useState(resolvedInitial);
+  // Follow the route when it changes but keep a manual toggle otherwise (state reset on prop change, no effect).
+  if (resolvedInitial !== prevInitial) {
+    setPrevInitial(resolvedInitial);
+    setOpen(resolvedInitial);
+  }
   const panelId = useId();
   const hasChildren = group.children.length > 0;
 
@@ -47,7 +56,8 @@ export function NavGroup({ group, className }: NavGroupProps) {
                 aria-hidden
                 className="absolute -left-1 top-[22px] size-1 rounded-full bg-graphite/[0.08]"
               />
-              <NavItem label={child.label} icon={child.icon} to={child.to} dim />
+              {/* pr-3: Chrome sets Manrope 500 ~3px wider than Figma, so "Purchase Orders" needs the room */}
+              <NavItem label={child.label} icon={child.icon} to={child.to} dim className="pr-3" />
             </li>
           ))}
         </ul>

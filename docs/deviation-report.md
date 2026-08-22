@@ -63,3 +63,34 @@ selected option card). The following were added so the UI is usable and accessib
 - Badge text (`#3D73CA` / `#D8402A` on 8 % tints) ≈ 4.6 : 1 / 4.1 : 1 — passes / borderline.
 
 These colours were not changed; fix them in `src/styles/tokens.css` if the design is updated.
+
+## Action Queue and Sources (Figma sections 3–4)
+
+- **Hovered inbox row**: the first row of each list is filled `surface` in Figma (1:22813, 1:23200); it is treated
+  as the hover state, so nothing is selected on load.
+- **Items without a designed detail** (Talon RFQ, escalations 2–4, the shipment, Delta/Talon/Meridian emails)
+  reuse their own row text for the detail headline/subject; email bodies are empty and the meta line reads
+  `Escalation · - · escalation`. No copy was invented.
+- **Sources list shows four rows** (Delta, Talon, Meridian, Nova): the frame draws three under an "Unrouted (04)"
+  heading and the detail frame is Nova's email, so Nova is appended. Its pager therefore reads "04 of 04"
+  (Figma: "01 of 04"); the pager is positional within the Skipped tab.
+- **Tabs**: only the Skipped tab carries a count (as designed). Other Sources tabs filter the same fixture and
+  render a muted "No sources in this view." line when empty. Tab changes `replace` the history entry so Back
+  leaves the screen.
+- **Team table**: built as a real `<table>` with `th scope="col"` and `th scope="rowgroup"` group toggles
+  (collapsible, `aria-expanded`); only the eye button is interactive. Figma's "-" in REF/Age cells and "12d" in
+  the same item's detail meta are reproduced verbatim.
+- **Detail toolbar**: Figma's 20px glyphs get 24px hit areas; padding is 22/21px so the toolbar stays 68px tall
+  and icons land on the design's pixels. The 40 % chevron at "01 of N" is the `disabled` state.
+- **Purchase-order ids** at `/review/action-queue/:itemId` render the PO detail (1:20501, built in the
+  purchase-orders work) because Figma places that page under the Action Queue breadcrumb.
+- **Hover colours** for the new `paper` button, `surface` buttons and pager controls are assumptions.
+- **`chevron-right`** is one 24px-viewBox glyph rendered at 20px in the pager (stroke 1.5 → 1.25, as the
+  existing `arrow-bottom` precedent in `Select`).
+- **Text metrics**: Chromium lays out Manrope 18 at 24.6px per line and Inter 16 at 20px, while Figma rounds to
+  25 and 19. Detail bodies are therefore 1–3px shorter than the frames and everything under a page heading
+  sits 1px lower (the dashboard already has this offset). A global fix would be explicit per-size line-heights
+  in `tailwind.config.ts`; it was not applied here to avoid shifting already-verified screens.
+- **Focus management** on route change is not added (no `<Outlet>`, consistent with the rest of the app).
+- **Responsive**: tabs scroll horizontally below their width; the Team table scrolls horizontally under 640px;
+  the Sources aside stacks under the email below `xl`; routing-form rows stack below `sm`.

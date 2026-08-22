@@ -23,3 +23,9 @@ export type NavEntry = NavLeaf | NavGroup;
 export function isNavGroup(entry: NavEntry): entry is NavGroup {
   return 'children' in entry;
 }
+
+/** One step of the topbar trail (1:20591). The last item is the current page and never links. */
+export interface BreadcrumbItem {
+  label: string;
+  to?: RoutePath;
+}

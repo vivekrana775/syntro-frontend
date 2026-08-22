@@ -1,5 +1,7 @@
 import { forwardRef, type HTMLAttributes } from 'react';
 
+import { matchPath, useLocation } from 'react-router-dom';
+
 import { Button, Icon, Logo } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import { isNavGroup, type NavEntry } from '@/types';
@@ -17,6 +19,19 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
   { navigation, onNewOrder, className, ...rest },
   ref,
 ) {
+  const { pathname } = useLocation();
+
+  // Figma opens the group that owns the current route (Workflow on the PO pages, Review on the
+  // action-queue detail) and collapses the others; with no match each group's `defaultOpen` applies.
+  const activeGroupId = navigation.find(
+    (entry) =>
+      isNavGroup(entry) &&
+      entry.children.some(
+        (child) =>
+          child.to !== undefined && matchPath({ path: child.to, end: false }, pathname) !== null,
+      ),
+  )?.id;
+
   return (
     <aside
       ref={ref}
@@ -39,7 +54,15 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
         </Button>
         {navigation.map((entry) =>
           isNavGroup(entry) ? (
-            <NavGroup key={entry.id} group={entry} />
+            <NavGroup
+              key={entry.id}
+              group={entry}
+              initialOpen={
+                activeGroupId === undefined
+                  ? (entry.defaultOpen ?? false)
+                  : entry.id === activeGroupId
+              }
+            />
           ) : (
             <NavItem key={entry.id} label={entry.label} icon={entry.icon} to={entry.to} />
           ),

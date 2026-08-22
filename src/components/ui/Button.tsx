@@ -10,7 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: 'bg-vermilion text-paper hover:bg-vermilion-deep',
+        // result-dialog "Confirm" (1:26432) is drawn in the deep red at rest
+        'primary-deep': 'bg-vermilion-deep text-paper hover:bg-vermilion',
         neutral: 'bg-neutral text-graphite hover:bg-surface',
+        // secondary action inside paper cards (Dismiss / No, Reject — 1:20037, 1:20061)
+        surface: 'bg-surface text-graphite hover:bg-hatch',
+        // paper pill on the white page, e.g. Sources "Sync Now" (1:23230)
+        paper: 'bg-paper text-graphite hover:bg-surface',
         ghost: 'bg-transparent text-graphite hover:bg-paper',
       },
       size: {

@@ -10,6 +10,7 @@ const iconButtonVariants = cva(
     variants: {
       variant: {
         paper: 'bg-paper text-graphite hover:bg-surface',
+        surface: 'bg-surface text-graphite hover:bg-hatch',
         outline: 'border border-subtle bg-transparent text-graphite hover:bg-paper',
         graphite: 'bg-graphite text-paper hover:bg-graphite/90',
         facebook: 'bg-facebook text-paper hover:bg-facebook/90',
@@ -17,6 +18,7 @@ const iconButtonVariants = cva(
       },
       size: {
         24: 'size-6',
+        32: 'size-8',
         48: 'size-12',
         52: 'size-13',
         56: 'size-14',

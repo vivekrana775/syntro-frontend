@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react';
 
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui';
-import type { NavEntry, User } from '@/types';
+import type { BreadcrumbItem, NavEntry, User } from '@/types';
 
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
@@ -10,12 +10,21 @@ export interface AppLayoutProps {
   title: string;
   user: User;
   navigation: NavEntry[];
+  /** Optional trail rendered in place of the title (see `Topbar`). */
+  breadcrumb?: BreadcrumbItem[];
   onNewOrder: () => void;
   children: ReactNode;
 }
 
 /** Sidebar + topbar shell (1:1057). Below `lg` the sidebar becomes a drawer — a responsive assumption. */
-export function AppLayout({ title, user, navigation, onNewOrder, children }: AppLayoutProps) {
+export function AppLayout({
+  title,
+  user,
+  navigation,
+  breadcrumb,
+  onNewOrder,
+  children,
+}: AppLayoutProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleNewOrder = () => {
@@ -46,11 +55,13 @@ export function AppLayout({ title, user, navigation, onNewOrder, children }: App
         <Topbar
           title={title}
           user={user}
+          breadcrumb={breadcrumb}
           onMenuClick={() => {
             setDrawerOpen(true);
           }}
         />
-        <main className="flex-1 p-6">{children}</main>
+        {/* Column so review screens can stretch their content card to the bottom edge (1:22810). */}
+        <main className="flex flex-1 flex-col p-6">{children}</main>
       </div>
     </div>
   );

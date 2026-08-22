@@ -1,3 +1,4 @@
+import type { BadgeTone } from './badge';
 import type { IconName } from './icon';
 
 export interface StatMetric {
@@ -31,8 +32,6 @@ export interface ChartCardData {
   domain: [number, number];
   data: ChartDatum[];
 }
-
-export type BadgeTone = 'info' | 'urgent';
 
 export interface ReviewItem {
   id: string;

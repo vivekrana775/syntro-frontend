@@ -24,6 +24,13 @@ export const ICON_NAMES = [
   'calendar',
   'dollar',
   'check-double',
+  'check',
+  'close-bold',
+  'chevron-right',
+  'arrow-left',
+  'chevron-left',
+  'refresh-double',
+  'time-circle',
   'git',
 ] as const;
 

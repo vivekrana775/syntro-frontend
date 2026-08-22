@@ -7,17 +7,64 @@ import {
   type ReactElement,
 } from 'react';
 
+import { cva, type VariantProps } from 'class-variance-authority';
+
 import { cn } from '@/lib/cn';
+
+const controlVariants = cva('rounded-pill p-1', {
+  variants: {
+    tone: {
+      surface: 'bg-surface',
+      paper: 'bg-paper',
+    },
+    fit: {
+      fill: 'flex w-full',
+      hug: 'inline-flex self-start',
+    },
+  },
+  defaultVariants: {
+    tone: 'surface',
+    fit: 'fill',
+  },
+});
+
+const tabVariants = cva(
+  'flex h-12 items-center justify-center whitespace-nowrap rounded-pill px-6 font-display text-base font-medium transition-colors',
+  {
+    variants: {
+      tone: {
+        surface: '',
+        paper: '',
+      },
+      fit: {
+        fill: 'flex-1',
+        hug: '',
+      },
+      selected: {
+        true: 'bg-graphite text-paper',
+        false: 'text-graphite',
+      },
+    },
+    compoundVariants: [
+      // unselected tabs lift to the opposite neutral on hover so the state is visible on either container
+      { selected: false, tone: 'surface', class: 'hover:bg-paper' },
+      { selected: false, tone: 'paper', class: 'hover:bg-surface' },
+    ],
+    defaultVariants: {
+      tone: 'surface',
+      fit: 'fill',
+      selected: false,
+    },
+  },
+);
 
 export interface SegmentedOption<T extends string> {
   value: T;
   label: string;
 }
 
-export interface SegmentedControlProps<T extends string> extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  'onChange'
-> {
+export interface SegmentedControlProps<T extends string>
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>, VariantProps<typeof controlVariants> {
   options: readonly SegmentedOption<T>[];
   value: T;
   onValueChange: (value: T) => void;
@@ -26,7 +73,7 @@ export interface SegmentedControlProps<T extends string> extends Omit<
 }
 
 function SegmentedControlInner<T extends string>(
-  { options, value, onValueChange, className, ...rest }: SegmentedControlProps<T>,
+  { options, value, onValueChange, tone, fit, className, ...rest }: SegmentedControlProps<T>,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const id = useId();
@@ -54,7 +101,7 @@ function SegmentedControlInner<T extends string>(
     <div
       ref={ref}
       role="tablist"
-      className={cn('flex w-full rounded-pill bg-surface p-1', className)}
+      className={cn(controlVariants({ tone, fit }), className)}
       {...rest}
     >
       {options.map((option) => {
@@ -71,10 +118,7 @@ function SegmentedControlInner<T extends string>(
               onValueChange(option.value);
             }}
             onKeyDown={onKeyDown}
-            className={cn(
-              'flex h-12 flex-1 items-center justify-center whitespace-nowrap rounded-pill px-6 font-display text-base font-medium transition-colors',
-              selected ? 'bg-graphite text-paper' : 'text-graphite hover:bg-paper',
-            )}
+            className={tabVariants({ tone, fit, selected })}
           >
             {option.label}
           </button>
@@ -84,7 +128,7 @@ function SegmentedControlInner<T extends string>(
   );
 }
 
-/** Two-state pill toggle (1:2798). Selection is controlled; the parent decides what it means. */
+/** Pill tab switcher (1:2798 on surface, 1:20006 on paper). Selection is controlled; the parent decides what it means. */
 export const SegmentedControl = forwardRef(SegmentedControlInner) as <T extends string>(
   props: SegmentedControlProps<T> & { ref?: ForwardedRef<HTMLDivElement> },
 ) => ReactElement;
