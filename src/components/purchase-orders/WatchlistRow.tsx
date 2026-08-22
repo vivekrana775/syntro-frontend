@@ -24,18 +24,15 @@ export function WatchlistRow({
   ...rest
 }: WatchlistRowProps) {
   return (
-    <div
-      className={cn(
-        'grid grid-cols-watchlist items-center font-sans text-base leading-5 text-graphite',
-        className,
-      )}
-      {...rest}
-    >
-      <span className="truncate font-medium">{number}</span>
-      <span className="truncate">{vendor}</span>
-      <span className="truncate text-graphite/60">{meta}</span>
-      <span className="flex min-w-0 items-center gap-2 text-graphite/60">{trailing}</span>
-      <span className="flex justify-end">{action}</span>
+    // The fixed Figma columns need ~900px; below that the row scrolls inside its card (like the tracker table).
+    <div className={cn('overflow-x-auto', className)} {...rest}>
+      <div className="grid grid-cols-watchlist items-center font-sans text-base leading-5 text-graphite">
+        <span className="truncate font-medium">{number}</span>
+        <span className="truncate">{vendor}</span>
+        <span className="truncate text-graphite/60">{meta}</span>
+        <span className="flex min-w-0 items-center gap-2 text-graphite/60">{trailing}</span>
+        <span className="flex justify-end">{action}</span>
+      </div>
     </div>
   );
 }
