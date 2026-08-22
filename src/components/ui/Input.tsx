@@ -29,6 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-invalid={invalid || undefined}
         className={cn(
           'h-full min-w-0 flex-1 bg-transparent px-4 font-sans text-lg text-graphite outline-none placeholder:text-graphite/40 focus-visible:ring-0',
+          'autofill:shadow-[inset_0_0_0_1000px_theme(colors.paper)] autofill:[-webkit-text-fill-color:theme(colors.graphite)]',
           className,
         )}
         {...rest}

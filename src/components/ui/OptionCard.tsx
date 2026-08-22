@@ -25,7 +25,7 @@ export const OptionCard = forwardRef<HTMLButtonElement, OptionCardProps>(functio
       role="radio"
       aria-checked={selected}
       className={cn(
-        'flex h-option-card w-option-card max-w-full flex-col items-start gap-3 rounded-lg border p-5 text-left transition-colors',
+        'flex h-option-card-h w-option-card max-w-full flex-col items-start gap-3 rounded-lg border p-5 text-left transition-colors',
         selected ? 'border-vermilion' : 'border-subtle hover:bg-paper',
         className,
       )}

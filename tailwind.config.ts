@@ -13,6 +13,22 @@ const text = (
   { lineHeight: opts.lineHeight ?? 'normal', letterSpacing: opts.tracking ?? '-0.02em' },
 ];
 
+/** Named element sizes from Figma, usable as w-*, max-w-*, min-w-*, h-* and min-h-*. */
+const sizes = {
+  search: '260px',
+  'option-card': '318px',
+  'auth-form': '500px',
+  'chart-card': '544px',
+  promo: '568px',
+  'modal-md': '600px',
+  'modal-lg': '700px',
+  'auth-card': '800px',
+  stat: '108px',
+  'option-card-h': '173px',
+  'chart-card-h': '388px',
+  'auth-panel': '976px',
+};
+
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
@@ -86,21 +102,11 @@ export default {
         26: '104px',
         70: '280px',
       },
-      width: {
-        search: '260px',
-        'option-card': '318px',
-        'auth-form': '500px',
-        promo: '568px',
-        'modal-md': '600px',
-        'modal-lg': '700px',
-        'auth-card': '800px',
-      },
-      height: {
-        stat: '108px',
-        'option-card': '173px',
-        'chart-card': '388px',
-        'auth-panel': '976px',
-      },
+      width: sizes,
+      maxWidth: sizes,
+      minWidth: sizes,
+      height: sizes,
+      minHeight: sizes,
       boxShadow: {
         card: '0 0 40px 0 rgb(0 0 0 / 0.04)',
         'tooltip-dot': '0 2px 2px 0 rgb(50 50 71 / 0.06), 0 2px 4px 0 rgb(50 50 71 / 0.06)',

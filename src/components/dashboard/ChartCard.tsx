@@ -8,7 +8,7 @@ export interface ChartCardProps {
 /** 544×388 chart tile (1:1228 / 1:1288): title, headline metric, arrow chip and the bar chart. */
 export function ChartCard({ chart }: ChartCardProps) {
   return (
-    <Card className="min-h-chart-card flex flex-col gap-6">
+    <Card className="flex min-h-chart-card-h flex-col gap-6">
       <div className="flex items-start justify-between gap-4">
         <div className="flex flex-col gap-2">
           <h3 className="font-display text-xl font-medium text-graphite">{chart.title}</h3>
