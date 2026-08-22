@@ -64,6 +64,27 @@ selected option card). The following were added so the UI is usable and accessib
 
 These colours were not changed; fix them in `src/styles/tokens.css` if the design is updated.
 
+## Purchase Orders (Figma section 2)
+
+- **Inter 500** was added to the Google Fonts load (`index.html`) — PO numbers, table headers and the
+  parsed-summary emphasis use Inter Medium; the earlier screens only needed 400.
+- **Stroke-inside padding**: Figma draws the 1px card/row borders inside their 18/24px padding, so
+  bordered boxes use `border` + 17/23px tokens (`p-4.25`, `p-5.75`) to keep content on the design
+  pixel; outline pills use `ring-1 ring-inset` so their box matches the filled pills.
+- **20px eye glyphs** on watchlist rows sit inside 24px hit targets pulled in with `-m-0.5`
+  (keyboard/pointer target size; the row keeps its designed 20px height).
+- **Collapsed draft row** keeps the collapse chevron (the frame shows none) so it can be re-expanded.
+- **Supplier-memory card** is 1px taller than the frame (real `h-px` divider vs Figma's zero-height line);
+  the draft body is ~3px shorter and the result dialog 2px taller (browser vs Figma line metrics, audit #18).
+- **Active nav label**: Chrome renders Manrope 500 ≈3px wider than Figma, so nav child rows drop to
+  12px right padding — "Purchase Orders" would otherwise truncate; nothing occupies that space.
+- **Result-dialog illustrations** were re-wrapped into 200 × 200 viewBoxes (Figma serves 167 × 158 /
+  158 × 167 SVGs with `preserveAspectRatio="none"`, which would stretch in an `<img>`).
+- **Derived data**: modal facts for PO - 1045/1047 and detail pages for tracker ids other than
+  PO - 1051 are assembled from values visible elsewhere; unknown fields render "-".
+- **Below ~900px** the watchlist row grid and the tracker table keep their fixed Figma columns and
+  scroll horizontally inside their cards; the PO detail card stacks its two panels below `lg`.
+
 ## Action Queue and Sources (Figma sections 3–4)
 
 - **Hovered inbox row**: the first row of each list is filled `surface` in Figma (1:22813, 1:23200); it is treated

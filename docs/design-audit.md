@@ -1,7 +1,9 @@
 # Phase 0 — Design audit
 
-Source of truth: Figma file `FGA0sH1rkffLXq1NJIFLRR`, section `1:26712` ("Section 1"). All frames are
-**Desktop 1440 × 1024**; the file contains no other breakpoints.
+Source of truth: Figma file `FGA0sH1rkffLXq1NJIFLRR`, sections `1:26712` (auth + dashboard),
+`1:26713` (Purchase Orders), `1:26714`/`1:26715` (Action Queue, Sources). All frames are
+**Desktop 1440 × 1024** (the Purchase Orders watchlist frame is 1440 × 1326); the file contains no
+other breakpoints.
 
 ## 0.1 Design tokens
 
@@ -18,6 +20,9 @@ Source of truth: Figma file `FGA0sH1rkffLXq1NJIFLRR`, section `1:26712` ("Sectio
 | `neutral`        | `#F7F7F7`              | Cancel/Reset buttons, option-card icon chip                      |
 | `white`          | `#FFFFFF`              | App page background, modal surface                               |
 | `blue`           | `#3D73CA`              | Info badge text/dot (bg at 8 %)                                  |
+| `green`          | `#009E6B`              | Success pills at 8 % bg (Delivered, Awaiting Approval, Done)     |
+| `amber`          | `#C27500`              | Warning pills at 8 % bg, Verify Reply card border                |
+| `sand`           | `#F3EBE0`              | Parsed-reply callout                                             |
 | `facebook`       | `#1C78F1`              | Facebook social button                                           |
 | `line`           | `#D5D5D5`              | Nav tree connector                                               |
 | `hatch`          | `#E7E7E7`              | Chart hatch lines                                                |
@@ -73,6 +78,11 @@ toggle, selected option card. Hover / focus / disabled states are not designed.
 | `1:1057` / `1:746` Main            | `/dashboard`                    | AppLayout  | Greeting + search + filter, 4 + 3 stat cards, 2 charts, review list     |
 | `1:1376` Add Order v1              | `/dashboard`                    | modal      | "What do you need to source?" — two option cards                        |
 | `1:2085` Filter                    | `/dashboard`                    | modal      | "Filter" — Project select                                               |
+| `1:19897` PO_Watchlist             | `/purchase-orders/watchlist`    | AppLayout  | Header + CTA, Watchlist/Tracker pills, drafts, Verify Reply, awaiting   |
+| `1:20077` PO_Watchlist Detail      | `/purchase-orders/watchlist`    | modal      | PO - 1044 facts, Thread/Chasers/ACK History, Cancel/Done                |
+| `1:26241` / `1:26478` Parse result | `/purchase-orders/watchlist`    | modal      | 425px result dialog with illustration, Cancel/Confirm                   |
+| `1:20282` PO_Tracker               | `/purchase-orders/tracker`      | AppLayout  | Pending + Issued tables with status/owner pills and eye actions         |
+| `1:20501` PO_Tracker (detail)      | `/review/action-queue/:itemId`  | AppLayout  | Breadcrumb topbar, PO facts, Shipment Timeline, Supplier Memory         |
 | `1:22719` Action Queue             | `/review/action-queue`          | AppLayout  | Heading + subtitle, Needs You \| Team pill tabs, inbox rows             |
 | `1:25976` Action Queue_Detail      | `/review/action-queue/:itemId`  | AppLayout  | Toolbar with pager, email, classifier notes, routing form, "Not an RFQ" |
 | `1:22831` Action Queue_Team        | `/review/action-queue?tab=team` | AppLayout  | Grouped table (Escalations, Shipments) with eye actions                 |
@@ -104,3 +114,8 @@ toggle, selected option card. Hover / focus / disabled states are not designed.
 | 16  | Team table column widths only implied by text positions                              | 162 / flexible / 216 / 99px columns with 18px cell padding reproduce x = 18/180/767/983                                       |
 | 17  | Which sidebar group is open differs per screen (Workflow on Dashboard, Review here)  | The group containing the current route opens; otherwise `defaultOpen`                                                         |
 | 18  | Figma line-height rounding (Manrope 18 → 25, Inter 16 → 19) vs browser metrics       | Kept browser metrics; 1–3px drift documented in the deviation report                                                          |
+| 19  | Collapsed draft row (`1:20196`) has no affordance to re-expand                       | The expand/collapse chevron stays visible in both states                                                                      |
+| 20  | PO modal data exists only for PO - 1044; a detail page only for PO - 1051            | Other ids derive from list/tracker values; unknown fields stay "-"                                                            |
+| 21  | Result-dialog "Confirm" is drawn `#D8402A` at rest (`1:26432`)                       | Implemented literally as `Button variant="primary-deep"` (may be a captured hover)                                            |
+| 22  | Bordered PO boxes pad 18/24 with the 1px stroke drawn inside                         | CSS border + 17/23px spacing tokens keep content on the same pixel; pills use an inset ring                                   |
+| 23  | The bare `/purchase-orders` URL has no frame                                         | Redirects to the watchlist tab                                                                                                |

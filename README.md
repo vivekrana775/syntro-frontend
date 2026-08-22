@@ -27,16 +27,19 @@ Requires Node ≥ 20. Fonts (Manrope, Inter) load from Google Fonts.
 
 ## Routes
 
-| Route                          | Figma frame                                 | Notes                                                                                 |
-| ------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `/`                            | —                                           | Redirects to `/sign-in`                                                               |
-| `/sign-in`                     | `1:2465` Sign In                            | Tabs navigate between sign-in and sign-up                                             |
-| `/sign-up`                     | `1:2840` Sign Up                            |                                                                                       |
-| `/dashboard`                   | `1:746` Main                                | Hosts the New Order (`1:1701`) and Filter (`1:2410`) modals                           |
-| `/review/action-queue`         | `1:22719` Action Queue, `1:22831` Team      | `?tab=needs-you` (default) or `?tab=team`                                             |
-| `/review/action-queue/:itemId` | `1:25976` RFQ detail, `1:22986` Team detail | Unknown ids redirect to the list; purchase-order ids render the PO detail (`1:20501`) |
-| `/review/sources`              | `1:23106` Sources                           | `?tab=skipped` (default), `all`, `procurement`, `questions`, `extracted`              |
-| `/review/sources/:sourceId`    | `1:23239` Sources detail                    | Topbar shows the "Sources › subject" breadcrumb                                       |
+| Route                          | Figma frame                                 | Notes                                                                                    |
+| ------------------------------ | ------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `/`                            | —                                           | Redirects to `/sign-in`                                                                  |
+| `/sign-in`                     | `1:2465` Sign In                            | Tabs navigate between sign-in and sign-up                                                |
+| `/sign-up`                     | `1:2840` Sign Up                            |                                                                                          |
+| `/dashboard`                   | `1:746` Main                                | Hosts the New Order (`1:1701`) and Filter (`1:2410`) modals                              |
+| `/purchase-orders`             | —                                           | Redirects to `/purchase-orders/watchlist`                                                |
+| `/purchase-orders/watchlist`   | `1:19897` Watchlist                         | Draft follow-up, Verify Reply (result dialogs `1:26241`/`1:26478`), PO modal (`1:20077`) |
+| `/purchase-orders/tracker`     | `1:20282` Tracker                           | Pending + Issued tables; eye buttons open `/review/action-queue/:itemId`                 |
+| `/review/action-queue`         | `1:22719` Action Queue, `1:22831` Team      | `?tab=needs-you` (default) or `?tab=team`                                                |
+| `/review/action-queue/:itemId` | `1:25976` RFQ detail, `1:22986` Team detail | Unknown ids redirect to the list; purchase-order ids render the PO detail (`1:20501`)    |
+| `/review/sources`              | `1:23106` Sources                           | `?tab=skipped` (default), `all`, `procurement`, `questions`, `extracted`                 |
+| `/review/sources/:sourceId`    | `1:23239` Sources detail                    | Topbar shows the "Sources › subject" breadcrumb                                          |
 
 ## Folder structure
 
@@ -48,6 +51,7 @@ src/
     layout/     Sidebar, Topbar, AppLayout, AuthLayout, AuthPromoPanel
     auth/       Auth card composites (heading, form, social row)
     dashboard/  Dashboard composites, modals and the promo preview
+    purchase-orders/  Watchlist cards, tracker tables, PO modal/result dialogs, detail panels
     review/     Shared review pieces: inbox rows, detail toolbar/heading, email body, hairline
     action-queue/  Needs You list, Team table, RFQ routing and escalation details
     sources/    Sources list, opened email and the "Skipped by agent" panel
@@ -99,6 +103,8 @@ Components are presentational; all data enters through props from the page conta
    - `src/pages/sign-up/SignUpPage.tsx` — same three handlers
    - `src/pages/dashboard/DashboardPage.tsx` — `handleContinue` (New Order), `handleApplyFilter`
      (`handleOpenQueue` / `handleSelectReviewItem` now navigate to the Action Queue)
+   - `src/pages/purchase-orders/PurchaseOrdersPage.tsx` — `handleContinue`, `handleNewPurchaseOrder`,
+     `handleSendDraft`, `handleDismissDraft`, `handleDone` (PO modal), `handleConfirmResult`
    - `src/pages/action-queue/ActionQueuePage.tsx` — `handleContinue`, `handleRoute`, `handleCreate`,
      `handleDismiss` (Not an RFQ), `handleResolve`, `handleGenerateTimeline`
    - `src/pages/sources/SourcesPage.tsx` — `handleContinue`, `handleSync`, `handleMarkRelevant`
