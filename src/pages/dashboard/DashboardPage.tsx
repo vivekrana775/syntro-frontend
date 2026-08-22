@@ -50,11 +50,13 @@ export function DashboardPage() {
       <NewOrderModal
         open={newOrder.open}
         onOpenChange={newOrder.onOpenChange}
+        onCloseAutoFocus={newOrder.onCloseAutoFocus}
         onContinue={handleContinue}
       />
       <FilterModal
         open={filter.open}
         onOpenChange={filter.onOpenChange}
+        onCloseAutoFocus={filter.onCloseAutoFocus}
         projects={projects}
         onApply={handleApplyFilter}
       />

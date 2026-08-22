@@ -16,17 +16,25 @@ import type { Project } from '@/types';
 export interface FilterModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /** Restores focus to the opener when the dialog closes (see `useDisclosure`). */
+  onCloseAutoFocus?: (event: Event) => void;
   projects: Project[];
   onApply: (projectId: string | null) => void;
 }
 
 /** "Filter" dialog (1:2410): a single Project select with Reset / Apply. */
-export function FilterModal({ open, onOpenChange, projects, onApply }: FilterModalProps) {
+export function FilterModal({
+  open,
+  onOpenChange,
+  onCloseAutoFocus,
+  projects,
+  onApply,
+}: FilterModalProps) {
   const [projectId, setProjectId] = useState('');
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent size="md">
+      <DialogContent size="md" onCloseAutoFocus={onCloseAutoFocus}>
         <DialogHeader>
           <DialogTitle>Filter</DialogTitle>
           <DialogDescription>Select a project to filter dashboard metrics.</DialogDescription>

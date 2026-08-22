@@ -15,6 +15,8 @@ import type { IconName, NewOrderKind } from '@/types';
 export interface NewOrderModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /** Restores focus to the opener when the dialog closes (see `useDisclosure`). */
+  onCloseAutoFocus?: (event: Event) => void;
   onContinue: (kind: NewOrderKind) => void;
 }
 
@@ -34,7 +36,12 @@ const options: { kind: NewOrderKind; icon: IconName; title: string; description:
 ];
 
 /** "What do you need to source?" dialog (Add Order v1, 1:1701). */
-export function NewOrderModal({ open, onOpenChange, onContinue }: NewOrderModalProps) {
+export function NewOrderModal({
+  open,
+  onOpenChange,
+  onCloseAutoFocus,
+  onContinue,
+}: NewOrderModalProps) {
   const [kind, setKind] = useState<NewOrderKind>('plan-build');
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
@@ -55,7 +62,7 @@ export function NewOrderModal({ open, onOpenChange, onContinue }: NewOrderModalP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent size="lg">
+      <DialogContent size="lg" onCloseAutoFocus={onCloseAutoFocus}>
         <DialogHeader>
           <DialogTitle>What do you need to source?</DialogTitle>
           <DialogDescription>
