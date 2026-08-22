@@ -1,0 +1,23 @@
+/* Design tokens extracted from Figma (palette frame 1:2432 + screen-level values).
+   Colors are RGB channel triplets so Tailwind can apply alpha modifiers. */
+:root {
+  --c-graphite: 22 24 29; /* #16181D */
+  --c-slate: 91 99 109; /* #5B636D */
+  --c-vermilion: 238 75 52; /* #EE4B34 */
+  --c-vermilion-deep: 216 64 42; /* #D8402A */
+  --c-paper: 247 245 243; /* #F7F5F3 */
+  --c-surface: 241 239 236; /* #F1EFEC */
+  --c-neutral: 247 247 247; /* #F7F7F7 – neutral buttons, option-card chips */
+  --c-white: 255 255 255;
+  --c-blue: 61 115 202; /* #3D73CA – info badge */
+  --c-facebook: 28 120 241; /* #1C78F1 */
+  --c-line: 213 213 213; /* #D5D5D5 – nav tree connector */
+  --c-hatch: 231 231 231; /* #E7E7E7 – chart hatch lines */
+
+  /* Semantic roles (light theme). Swap these to theme the app. */
+  --bg-page: var(--c-white);
+  --bg-canvas: var(--c-surface);
+  --bg-card: var(--c-paper);
+  --bg-chip: var(--c-surface);
+  --accent: var(--c-vermilion);
+}

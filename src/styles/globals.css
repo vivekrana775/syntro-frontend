@@ -1,0 +1,37 @@
+@import './tokens.css';
+@import './fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply min-h-screen bg-page font-sans text-base text-graphite;
+  }
+
+  /* Figma has no focus style; a vermilion ring is the assumed focus treatment (see deviation report). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-vermilion ring-offset-2 ring-offset-page;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+  }
+
+  img,
+  svg {
+    display: block;
+  }
+}

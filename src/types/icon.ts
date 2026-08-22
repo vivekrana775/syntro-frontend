@@ -1,0 +1,30 @@
+/** Names of the line icons exported from Figma ("COCO/Line/*" plus a few one-offs). */
+export const ICON_NAMES = [
+  'plus',
+  'menu',
+  'work',
+  'sort',
+  'note',
+  'edit',
+  'document',
+  'status',
+  'arrow-top',
+  'arrow-bottom',
+  'arrow-right',
+  'arrow-top-right',
+  'arrow-swap',
+  'moon',
+  'sun',
+  'notification',
+  'eye',
+  'search',
+  'close',
+  'rotate-right',
+  'filter',
+  'calendar',
+  'dollar',
+  'check-double',
+  'git',
+] as const;
+
+export type IconName = (typeof ICON_NAMES)[number];
