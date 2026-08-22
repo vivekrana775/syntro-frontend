@@ -97,8 +97,11 @@ Components are presentational; all data enters through props from the page conta
 2. Implement the handlers marked `// TODO(api):`
    - `src/pages/sign-in/SignInPage.tsx` — `handleSubmit`, `handleSocial`, `handleForgotPassword`
    - `src/pages/sign-up/SignUpPage.tsx` — same three handlers
-   - `src/pages/dashboard/DashboardPage.tsx` — `handleContinue` (New Order), `handleApplyFilter`,
-     `handleOpenQueue`, `handleSelectReviewItem`
+   - `src/pages/dashboard/DashboardPage.tsx` — `handleContinue` (New Order), `handleApplyFilter`
+     (`handleOpenQueue` / `handleSelectReviewItem` now navigate to the Action Queue)
+   - `src/pages/action-queue/ActionQueuePage.tsx` — `handleContinue`, `handleRoute`, `handleCreate`,
+     `handleDismiss` (Not an RFQ), `handleResolve`, `handleGenerateTimeline`
+   - `src/pages/sources/SourcesPage.tsx` — `handleContinue`, `handleSync`, `handleMarkRelevant`
 3. Add loading/error states where needed — none exist in Figma, so none are implemented.
 
 No `fetch`/axios wrappers, env files or query libraries are included by design.
