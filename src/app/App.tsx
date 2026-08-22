@@ -1,3 +1,7 @@
+import { RouterProvider } from 'react-router-dom';
+
+import { router } from './router';
+
 export function App() {
-  return <main className="p-6 font-display text-2xl font-semibold">Syntro</main>;
+  return <RouterProvider router={router} />;
 }
