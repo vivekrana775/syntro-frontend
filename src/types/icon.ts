@@ -32,6 +32,14 @@ export const ICON_NAMES = [
   'refresh-double',
   'time-circle',
   'git',
+  // Bill of Materials (1:26716)
+  'folder',
+  'add-folder',
+  'upload',
+  'trash',
+  'more-vertical',
+  'edit-square',
+  'alert-circle',
 ] as const;
 
 export type IconName = (typeof ICON_NAMES)[number];

@@ -45,6 +45,32 @@ const sizes = {
   'col-actions': '99px',
   'review-table': '640px', // min width before the team table scrolls
   aside: '348px', // Sources detail "Skipped by agent" panel (1:23365)
+  // Bill of Materials (1:26716)
+  'bom-search': '219px', // outline search pill on the library and detail cards (1:18818)
+  menu: '264px', // row / folder dropdown menu (1:18889)
+  'modal-xl': '1000px', // Map Columns dialog (1:24088)
+  'bom-table': '1064px', // library and parts tables (1:18826, 1:19709)
+  'bom-empty-copy': '377px', // empty-state paragraph (1:19305)
+  'bom-tree': '582px', // assembly tree scroll box (1:19453)
+  'tree-row': '85px', // assembly tree child row (1:19471)
+  'map-table': '952px', // Map Columns table (1:24104)
+  'map-select': '268px', // Map Columns field selects (1:24117)
+  // library table columns (1:18826); text at x 18 / 558 / 758 / 940
+  'col-bom-name': '540px',
+  'col-bom-parts': '200px',
+  'col-bom-uploaded': '182px',
+  // Map Columns table (1:24104); text at x 18 / 300 / 666
+  'col-map-theirs': '282px',
+  'col-map-sample': '366px',
+  // parts table (1:19709); checkbox x18, then text at x 52 / 335 / 418 / 537 / 674 / 868
+  'col-parts-select': '34px',
+  'col-parts-part': '283px',
+  'col-parts-rev': '83px',
+  'col-parts-category': '119px',
+  'col-parts-type': '137px',
+  'col-parts-description': '194px',
+  'col-parts-demand': '115px', // the eye action starts at x983
+  'dialog-field': '552px', // single field inside a 600px dialog; kept at that width in Map Columns (1:24102)
 };
 
 export default {
@@ -120,12 +146,21 @@ export default {
       spacing: {
         // Figma draws 1px strokes inside the padding: bordered boxes pad 1px less (17/23) so
         // their content lands on the same pixel as the design's 18/24.
+        1.25: '5px', // parts table demand: quantity → unit gap (1:19730)
+        1.75: '7px', // assembly root row: "Assembly • 19 Parts" dot gaps (1:19566)
+        2.25: '9px', // assembly tree trunk: child indent 41 − tick reach 32 puts it at x24 (1:19455)
+        3.75: '15px', // bordered 52px search pill: 16 - 1px border (1:18818)
         4.25: '17px',
         4.5: '18px',
         5.25: '21px', // bordered 68px detail toolbar: 22 + 24 + 21 + 1px border (1:26068)
         5.5: '22px', // detail toolbar: 24px hit areas around Figma's 20px glyphs (1:26068)
         5.75: '23px',
         13: '52px',
+        18: '72px', // Map Columns rows (1:24111)
+        6.75: '27px', // assembly tree rows: eye action inset from the row edge (1:19472)
+        7.25: '29px', // assembly root row: eye action inset from the box content edge (1:19563)
+        8.5: '34px', // assembly root subtitle indent = checkbox 18 + gap 16 (1:19562)
+        10.25: '41px', // assembly tree child indent: rows start at x56 = 15 + 41 (1:19471)
         26: '104px',
         50: '200px', // result-dialog illustration box
         70: '280px',
@@ -135,6 +170,9 @@ export default {
         watchlist: '130px 378px 229px minmax(0, 1fr) auto',
         // PO detail modal facts (1:20254): label column, value starts at x333
         'modal-facts': '333px minmax(0, 1fr)',
+        // assembly tree rows (1:19551, 1:19471): identity block, description at x681 of the box, eye action
+        'bom-root': '666px minmax(0, 1fr) auto',
+        'bom-child': '609px minmax(0, 1fr) auto',
       },
       width: sizes,
       maxWidth: sizes,
@@ -143,6 +181,7 @@ export default {
       minHeight: sizes,
       boxShadow: {
         card: '0 0 40px 0 rgb(0 0 0 / 0.04)',
+        menu: '0 0 12px 0 rgb(0 0 0 / 0.08)', // row / folder dropdown (1:18889)
         'tooltip-dot': '0 2px 2px 0 rgb(50 50 71 / 0.06), 0 2px 4px 0 rgb(50 50 71 / 0.06)',
       },
       zIndex: {

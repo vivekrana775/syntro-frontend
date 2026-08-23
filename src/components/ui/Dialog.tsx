@@ -25,6 +25,7 @@ const dialogContentVariants = cva(
         sm: 'max-w-modal-sm',
         md: 'max-w-modal-md',
         lg: 'max-w-modal-lg',
+        xl: 'max-w-modal-xl',
       },
     },
     defaultVariants: {
@@ -36,16 +37,21 @@ const dialogContentVariants = cva(
 export interface DialogContentProps
   extends
     ComponentPropsWithoutRef<typeof DialogPrimitive.Content>,
-    VariantProps<typeof dialogContentVariants> {}
+    VariantProps<typeof dialogContentVariants> {
+  /** Skip the scrim when stacking on another dialog so the backdrop is not darkened twice. */
+  overlay?: boolean;
+}
 
 /** White 24px-radius panel over a 60% graphite overlay (1:1700). Focus trap, ESC and aria come from Radix. */
 export const DialogContent = forwardRef<
   ElementRef<typeof DialogPrimitive.Content>,
   DialogContentProps
->(function DialogContent({ size, className, children, ...rest }, ref) {
+>(function DialogContent({ size, overlay = true, className, children, ...rest }, ref) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-overlay bg-overlay" />
+      <DialogPrimitive.Overlay
+        className={cn('fixed inset-0 z-overlay', overlay ? 'bg-overlay' : 'bg-transparent')}
+      />
       <DialogPrimitive.Content
         ref={ref}
         className={cn(dialogContentVariants({ size }), className)}

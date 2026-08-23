@@ -20,6 +20,8 @@ const buttonVariants = cva(
         ghost: 'bg-transparent text-graphite hover:bg-paper',
       },
       size: {
+        // "New Folder" pill inside the Move dialog (1:25391)
+        sm: 'h-9 gap-2 px-4 text-sm',
         md: 'h-12 px-6 text-base',
         lg: 'h-14 px-8 text-lg',
       },

@@ -5,6 +5,8 @@ import {
   type SVGProps,
 } from 'react';
 
+import AddFolder from '@/assets/icons/add-folder.svg?react';
+import AlertCircle from '@/assets/icons/alert-circle.svg?react';
 import ArrowBottom from '@/assets/icons/arrow-bottom.svg?react';
 import ArrowLeft from '@/assets/icons/arrow-left.svg?react';
 import ArrowRight from '@/assets/icons/arrow-right.svg?react';
@@ -20,12 +22,15 @@ import CloseBold from '@/assets/icons/close-bold.svg?react';
 import Close from '@/assets/icons/close.svg?react';
 import Document from '@/assets/icons/document.svg?react';
 import Dollar from '@/assets/icons/dollar.svg?react';
+import EditSquare from '@/assets/icons/edit-square.svg?react';
 import Edit from '@/assets/icons/edit.svg?react';
 import Eye from '@/assets/icons/eye.svg?react';
 import Filter from '@/assets/icons/filter.svg?react';
+import Folder from '@/assets/icons/folder.svg?react';
 import Git from '@/assets/icons/git.svg?react';
 import Menu from '@/assets/icons/menu.svg?react';
 import Moon from '@/assets/icons/moon.svg?react';
+import MoreVertical from '@/assets/icons/more-vertical.svg?react';
 import Note from '@/assets/icons/note.svg?react';
 import Notification from '@/assets/icons/notification.svg?react';
 import Plus from '@/assets/icons/plus.svg?react';
@@ -36,6 +41,8 @@ import Sort from '@/assets/icons/sort.svg?react';
 import Status from '@/assets/icons/status.svg?react';
 import Sun from '@/assets/icons/sun.svg?react';
 import TimeCircle from '@/assets/icons/time-circle.svg?react';
+import Trash from '@/assets/icons/trash.svg?react';
+import Upload from '@/assets/icons/upload.svg?react';
 import Work from '@/assets/icons/work.svg?react';
 import { cn } from '@/lib/cn';
 import type { IconName } from '@/types';
@@ -75,6 +82,13 @@ const registry: Record<IconName, SvgComponent> = {
   'refresh-double': RefreshDouble,
   'time-circle': TimeCircle,
   git: Git,
+  folder: Folder,
+  'add-folder': AddFolder,
+  upload: Upload,
+  trash: Trash,
+  'more-vertical': MoreVertical,
+  'edit-square': EditSquare,
+  'alert-circle': AlertCircle,
 };
 
 /** Icon sizes used in Figma: 16 (table actions), 18 (nav, search, button trailing), 20 (input addons, row actions), 24 (default). */

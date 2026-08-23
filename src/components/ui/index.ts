@@ -3,6 +3,7 @@ export { Badge, type BadgeProps } from './Badge';
 export { BarChart, type BarChartProps } from './BarChart';
 export { Button, type ButtonProps } from './Button';
 export { Card, type CardProps } from './Card';
+export { Checkbox, type CheckboxProps } from './Checkbox';
 export {
   Dialog,
   DialogClose,
@@ -17,6 +18,15 @@ export {
   type DialogHeaderProps,
 } from './Dialog';
 export { Divider, type DividerProps } from './Divider';
+export {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  type DropdownMenuContentProps,
+  type DropdownMenuItemProps,
+} from './DropdownMenu';
+export { FileInput, type FileInputProps } from './FileInput';
 export { FormField, type FormFieldProps } from './FormField';
 export { Icon, type IconProps, type IconSize } from './Icon';
 export { IconButton, type IconButtonProps } from './IconButton';

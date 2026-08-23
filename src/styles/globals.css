@@ -35,3 +35,24 @@
     display: block;
   }
 }
+
+@layer utilities {
+  /* Figma draws a 4px slate thumb inside the assembly tree box (1:19454); Firefox only supports `thin`. */
+  .scrollbar-slate {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--c-slate)) transparent;
+  }
+
+  .scrollbar-slate::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-slate::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: rgb(var(--c-slate));
+  }
+
+  .scrollbar-slate::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
