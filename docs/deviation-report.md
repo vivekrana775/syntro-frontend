@@ -115,3 +115,36 @@ These colours were not changed; fix them in `src/styles/tokens.css` if the desig
 - **Focus management** on route change is not added (no `<Outlet>`, consistent with the rest of the app).
 - **Responsive**: tabs scroll horizontally below their width; the Team table scrolls horizontally under 640px;
   the Sources aside stacks under the email below `xl`; routing-form rows stack below `sm`.
+
+## Bill of Materials (Figma section 5)
+
+- **Row actions** follow the list frames (eye + kebab menu, 1:18704 / 1:18915); the modal frames'
+  backgrounds show an older inline eye / folder / trash variant, which is not built.
+- **Folder and BOM dialogs are shared**: Figma only designs "Rename Folder" and "Delete Folder?", so
+  the row menu's Rename / Delete reuse them with "Rename BOM" / "Delete BOM?" wording (assumed copy).
+  "Create" and "Move" stay enabled over empty fields as drawn; empty submits are ignored.
+- **Local state**: folders, renames, moves and deletes mutate `bomLibraryReducer` in the page. The
+  flat, grouped and empty frames are the same page in three states; deleting everything reaches the
+  empty state. The upload wizard's "Done" does not insert a row (no parts / date are designed).
+- **Upload wizard** is one dialog whose content and width change per step (600 → 1000 → 425px) so
+  focus, the overlay and focus restoration survive the flow. "Upload" proceeds without a file (no
+  validation is designed). The nested New Folder dialog inside Move draws no second overlay.
+- **Map Columns** omits the "Actions" column and eye buttons that Figma places at x960, outside the
+  952px table (they are clipped in the frame as well).
+- **Menus** are Radix dropdowns portaled over the page (the kebabs live inside horizontally
+  scrolling tables); the highlighted row (`surface`) doubles as the keyboard focus state. A dialog
+  opened from a menu item returns focus to the kebab through `useDisclosure.onOpen(opener)`.
+- **Assembly tree** is a disclosure list (rows hold a checkbox and an eye button, so an ARIA `tree`
+  would be incorrect). The trunk and ticks are `line` pseudo-elements, as in the sidebar; the 4px
+  slate scrollbar is custom in Chromium / WebKit and falls back to `scrollbar-width: thin` in Firefox.
+  Only the six drawn parts are transcribed, so the box scrolls less than the frame suggests.
+- **Checkbox** checked state (graphite fill, paper check) is assumed; Figma draws the unchecked box only.
+- **Library nav icon** stays `document` (earlier sections) although these frames use `work`; the
+  BOM / Parts / Suppliers / Knowledge children are added with only BOM routed.
+- **Derived detail**: list rows other than ROBOT-100 — EVT build open the same assembly under their own
+  name and version; no other assembly is designed. Table descriptions keep Figma's literal
+  "ROBOT-100 autono..." text.
+- **Text metrics** (audit #18) put the 85px tree rows and 72px mapping rows within 1px of the frames.
+- **Responsive**: the library, parts and mapping tables and the tree box keep their Figma columns and
+  scroll horizontally inside their cards / dialog below ~1100px; header rows wrap; dialog widths are
+  capped by the viewport.
