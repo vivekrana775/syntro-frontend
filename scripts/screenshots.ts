@@ -18,6 +18,8 @@ const RESPONSIVE_ROUTES = [
   { path: 'purchase-orders/watchlist', name: 'purchase-orders-watchlist' },
   { path: 'review/action-queue?tab=team', name: 'action-queue-team' },
   { path: 'review/sources/src-nova', name: 'sources-detail' },
+  { path: 'library/bom', name: 'bom' },
+  { path: 'library/bom/bom-robot-100-evt', name: 'bom-detail' },
 ];
 
 async function shoot(page: Page, name: string, fullPage = false) {
@@ -114,6 +116,78 @@ async function main() {
 
   await page.goto(`${baseUrl}/review/sources/src-nova`, { waitUntil: 'networkidle' });
   await shoot(page, 'sources-detail@1440');
+
+  // Bill of Materials (section 1:26716). Folders and BOMs are local state, so the shots are sequenced.
+  const closeDialog = async () => {
+    await page.keyboard.press('Escape');
+    await page.getByRole('dialog').waitFor({ state: 'hidden' });
+  };
+  const deleteViaMenu = async (name: RegExp | string) => {
+    await page.getByRole('button', { name }).first().click();
+    await page.getByRole('menuitem', { name: 'Delete' }).click();
+    await page.getByRole('button', { name: 'Delete', exact: true }).click();
+    await page.getByRole('dialog').waitFor({ state: 'hidden' });
+  };
+
+  await page.goto(`${baseUrl}/library/bom`, { waitUntil: 'networkidle' });
+  await shoot(page, 'bom@1440');
+
+  await page.getByRole('button', { name: 'More actions for ROBOT - 100 - PRODUCTION v1' }).click();
+  await page.getByRole('menu').waitFor();
+  await shoot(page, 'bom-row-menu@1440');
+  await page.keyboard.press('Escape');
+
+  await page.getByRole('button', { name: 'New folder' }).click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'bom-new-folder@1440');
+  await page.getByLabel('Folder Name').fill('Dummy Folder');
+  await page.getByRole('button', { name: 'Create' }).click();
+  await page.getByRole('dialog').waitFor({ state: 'hidden' });
+  await shoot(page, 'bom-folders@1440');
+
+  await page.getByRole('button', { name: 'More actions for Dummy Folder' }).click();
+  await page.getByRole('menu').waitFor();
+  await shoot(page, 'bom-folder-menu@1440');
+  await page.getByRole('menuitem', { name: 'Rename' }).click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'bom-rename-folder@1440');
+  await closeDialog();
+
+  await page.getByRole('button', { name: 'More actions for ROBOT - 100 - PRODUCTION v1' }).click();
+  await page.getByRole('menuitem', { name: 'Move Project' }).click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'bom-move@1440');
+  await closeDialog();
+
+  await page.getByRole('button', { name: 'More actions for Dummy Folder' }).click();
+  await page.getByRole('menuitem', { name: 'Delete' }).click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'bom-delete-folder@1440');
+  await closeDialog();
+
+  await page.getByRole('button', { name: 'Upload BOM' }).click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'bom-upload@1440');
+  await page.getByRole('button', { name: 'Upload', exact: true }).click();
+  await page.getByRole('heading', { name: 'Map Columns' }).waitFor();
+  await shoot(page, 'bom-map-columns@1440');
+  await page.getByRole('button', { name: 'Confirm Mapping' }).click();
+  await page.getByRole('heading', { name: 'BOM Uploaded Successfully' }).waitFor();
+  await shoot(page, 'bom-uploaded@1440');
+  await closeDialog();
+
+  // The empty state (1:19147) is reached by deleting the folder and then every BOM.
+  await deleteViaMenu('More actions for Dummy Folder');
+  for (let i = 0; i < 4; i += 1) await deleteViaMenu(/^More actions for /);
+  await shoot(page, 'bom-empty@1440');
+
+  await page.goto(`${baseUrl}/library/bom/bom-robot-100-evt`, { waitUntil: 'networkidle' });
+  await shoot(page, 'bom-detail-tree@1440');
+
+  await page.goto(`${baseUrl}/library/bom/bom-robot-100-evt?tab=table`, {
+    waitUntil: 'networkidle',
+  });
+  await shoot(page, 'bom-detail-table@1440');
 
   for (const width of RESPONSIVE_WIDTHS) {
     await page.setViewportSize({ width, height: 1024 });
