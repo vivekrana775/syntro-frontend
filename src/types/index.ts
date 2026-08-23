@@ -10,6 +10,21 @@ export {
 } from './action-queue';
 export type { AuthMode, NewOrderKind, SignInValues, SignUpValues, SocialProvider } from './auth';
 export type { BadgeTone } from './badge';
+export {
+  BOM_DETAIL_TABS,
+  SYNTRO_FIELDS,
+  type BomAssembly,
+  type BomDetail,
+  type BomDetailTab,
+  type BomFolder,
+  type BomPart,
+  type BomsData,
+  type BomSummary,
+  type BomTableRow,
+  type ColumnMapping,
+  type SyntroField,
+  type UploadPreview,
+} from './bom';
 export type {
   ChartCardData,
   ChartDatum,

@@ -1,4 +1,5 @@
 export { actionQueue } from './action-queue';
+export { bomDetails, bomLibrary, getBomDetail, uploadPreview } from './bom';
 export { dashboard } from './dashboard';
 export { navigation } from './navigation';
 export { projects } from './projects';

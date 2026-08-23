@@ -28,6 +28,16 @@ export const navigation: NavEntry[] = [
       { id: 'sources', label: 'Sources', icon: 'arrow-swap', to: ROUTES.sources },
     ],
   },
-  { id: 'library', label: 'Library', icon: 'document', children: [] },
+  {
+    id: 'library',
+    label: 'Library',
+    icon: 'document',
+    children: [
+      { id: 'bom', label: 'BOM', icon: 'sort', to: ROUTES.bom },
+      { id: 'parts', label: 'Parts', icon: 'arrow-swap' },
+      { id: 'suppliers', label: 'Suppliers', icon: 'note' },
+      { id: 'knowledge', label: 'Knowledge', icon: 'rotate-right' },
+    ],
+  },
   { id: 'insights', label: 'Insights', icon: 'status', children: [] },
 ];

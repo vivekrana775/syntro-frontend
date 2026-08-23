@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import { ROUTE_PATTERNS, ROUTES } from '@/lib/constants';
 import { ActionQueuePage } from '@/pages/action-queue';
+import { BomDetailPage, BomLibraryPage } from '@/pages/bom';
 import { DashboardPage } from '@/pages/dashboard';
 import { PurchaseOrdersPage } from '@/pages/purchase-orders';
 import { SignInPage } from '@/pages/sign-in';
@@ -23,5 +24,8 @@ export const router = createBrowserRouter([
   { path: ROUTE_PATTERNS.actionQueueItem, element: <ActionQueuePage /> },
   { path: ROUTES.sources, element: <SourcesPage /> },
   { path: ROUTE_PATTERNS.source, element: <SourcesPage /> },
+  { path: ROUTES.library, element: <Navigate to={ROUTES.bom} replace /> },
+  { path: ROUTES.bom, element: <BomLibraryPage /> },
+  { path: ROUTE_PATTERNS.bomDetail, element: <BomDetailPage /> },
   { path: '*', element: <Navigate to={ROUTES.signIn} replace /> },
 ]);

@@ -1,4 +1,4 @@
-import type { ActionQueueTab, SourceTab } from '@/types';
+import type { ActionQueueTab, BomDetailTab, SourceTab } from '@/types';
 
 export const ROUTES = {
   home: '/',
@@ -10,6 +10,8 @@ export const ROUTES = {
   purchaseOrdersTracker: '/purchase-orders/tracker',
   actionQueue: '/review/action-queue',
   sources: '/review/sources',
+  library: '/library',
+  bom: '/library/bom',
 } as const;
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
@@ -18,6 +20,7 @@ export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
 export const ROUTE_PATTERNS = {
   actionQueueItem: `${ROUTES.actionQueue}/:itemId`,
   source: `${ROUTES.sources}/:sourceId`,
+  bomDetail: `${ROUTES.bom}/:bomId`,
 } as const;
 
 /** Query parameter that carries the active pill tab on list screens. */
@@ -33,3 +36,6 @@ export const actionQueueItemPath = (id: string) =>
 export const sourcesPath = (tab?: SourceTab) => withTab(ROUTES.sources, tab);
 
 export const sourcePath = (id: string) => `${ROUTES.sources}/${encodeURIComponent(id)}`;
+
+export const bomPath = (id: string, tab?: BomDetailTab) =>
+  withTab(`${ROUTES.bom}/${encodeURIComponent(id)}`, tab);

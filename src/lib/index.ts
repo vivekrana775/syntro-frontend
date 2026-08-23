@@ -2,6 +2,7 @@ export { cn } from './cn';
 export {
   actionQueueItemPath,
   actionQueuePath,
+  bomPath,
   ROUTE_PATTERNS,
   ROUTES,
   sourcePath,
