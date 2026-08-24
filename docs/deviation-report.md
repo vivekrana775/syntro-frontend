@@ -46,6 +46,11 @@ selected option card). The following were added so the UI is usable and accessib
 - **Sign Up "Login" button** and the copy typos ("Shippments", "at_risk", "Get Started New") are
   reproduced verbatim — Figma is the source of truth.
 
+- **App shell background** is `surface` (#F1EFEC) on every screen, as drawn in all the section
+  frames (1:19897, 1:18704, 1:21702 …): surface outside, paper cards, white dialogs. The Dashboard
+  frame (1:746) alone draws a white sidebar/topbar; it follows the shared shell instead. (The shell
+  originally shipped white from the 1:746 audit; corrected 2026-08-24.)
+
 ## Responsive behaviour (Figma is desktop-1440 only)
 
 | Width       | Behaviour                                                                                   |

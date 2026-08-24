@@ -19,7 +19,8 @@
   --c-hatch: 231 231 231; /* #E7E7E7 – chart hatch lines */
 
   /* Semantic roles (light theme). Swap these to theme the app. */
-  --bg-page: var(--c-white);
+  /* The app shell is surface like the section frames (1:21702 …); only 1:746 draws it white. */
+  --bg-page: var(--c-surface);
   --bg-canvas: var(--c-surface);
   --bg-card: var(--c-paper);
   --bg-chip: var(--c-surface);
