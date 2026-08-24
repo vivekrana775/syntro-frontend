@@ -20,6 +20,7 @@ const RESPONSIVE_ROUTES = [
   { path: 'review/sources/src-nova', name: 'sources-detail' },
   { path: 'library/bom', name: 'bom' },
   { path: 'library/bom/bom-robot-100-evt', name: 'bom-detail' },
+  { path: 'library/parts', name: 'parts' },
   { path: 'library/suppliers/approved', name: 'suppliers-approved' },
   { path: 'library/knowledge', name: 'knowledge' },
   { path: 'insights/analytics', name: 'analytics' },
@@ -191,6 +192,30 @@ async function main() {
     waitUntil: 'networkidle',
   });
   await shoot(page, 'bom-detail-table@1440');
+
+  // Parts (section 1:26717)
+  await page.goto(`${baseUrl}/library/parts`, { waitUntil: 'networkidle' });
+  await shoot(page, 'parts@1440');
+
+  await page.getByRole('button', { name: 'Filter parts' }).click();
+  await page.getByRole('dialog').waitFor();
+  // The designed dialog (1:21680) shows "Yes" selected; the app opens on "Any".
+  await page.getByRole('combobox', { name: 'Has Purchase History' }).click();
+  await page.getByRole('option', { name: 'Yes' }).click();
+  await shoot(page, 'parts-filter@1440');
+  await closeDialog();
+
+  // Part numbers repeat in the frame; the first BATT-LI-18650 row carries the designed detail.
+  await page.getByRole('button', { name: 'View BATT-LI-18650' }).first().click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'parts-detail@1440');
+  await page.getByRole('button', { name: 'Assign Supplier' }).click();
+  await shoot(page, 'parts-detail-assign@1440');
+  await closeDialog();
+
+  // The empty state (1:20638) is seeded through the `?empty` search param.
+  await page.goto(`${baseUrl}/library/parts?empty`, { waitUntil: 'networkidle' });
+  await shoot(page, 'parts-empty@1440');
 
   // Suppliers, Knowledge & Analytics (section 1:26718)
   await page.goto(`${baseUrl}/library/suppliers/approved`, { waitUntil: 'networkidle' });
