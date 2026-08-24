@@ -154,6 +154,37 @@ These colours were not changed; fix them in `src/styles/tokens.css` if the desig
   scroll horizontally inside their cards / dialog below ~1100px; header rows wrap; dialog widths are
   capped by the viewport.
 
+## Parts (Figma section 6)
+
+- **`?empty` seam**: the list has no designed delete action, so the "No Parts Yet" view (1:20638) is
+  reached by seeding the page's reducer empty via `/library/parts?empty`; both states render from one
+  code path (the header row, search and filter stay visible as drawn).
+- **Frame drift**: the Filter frame (1:21504) draws the table without its Actions column and with
+  shifted columns, and both detail frames put Last Supplier at x549; the table is built to the main
+  Parts frame (Actions kept, Last Supplier at x582). Header and body text share x18 in this section, so
+  the header cells pad 18 instead of the 17 used by the earlier tables.
+- **Money formats**: Figma writes "$ 4.10" in the table and "$4.10" in the detail dialog; both are
+  reproduced verbatim as separate pre-formatted strings (`lastPaidLabel` vs `priceLabel`).
+- **Filter**: only "Yes" is drawn, so the select offers Any / Yes / No and opens on Any (the screenshot
+  script picks Yes before capturing). "No" empties the table to its header row — the illustration is
+  reserved for a library with no parts, as on Suppliers. The chevron menu reuses the undesigned Select
+  dropdown chrome.
+- **Incumbent form**: Tooling Owner options (Customer / Supplier / Shared), the saved state and the
+  "No purchase history." copy are not designed. Save keeps the dialog open and swaps the form for the
+  supplier name, a muted "Tooling owner · Sunk NRE · notes" line and an "Edit Incumbent" button; Sunk
+  NRE is free text; saving without a supplier is ignored. The Supplier select lists the approved
+  vendors from the Suppliers mock, where every designed vendor exists.
+- **Undrawn detail**: only the first BATT-LI-18650 row has a designed detail (Kingsford Components,
+  $4.10, "2mo ago"); the other rows derive their purchase line from their own cells with synthesised
+  relative times, list the same "ROBOT - 100 PRODUCTION" BOM and have no quotes.
+- **Duplicate rows**: part numbers repeat as drawn (BEAR-608 ×4, …); rows keep unique ids, so the eye
+  buttons share an accessible name per part number and the screenshot script opens the first match.
+- **Text metrics** (audit #18): the detail dialogs render ~7px shorter than the 530 / 730px frames
+  because browser line boxes for Manrope 18 / Inter 18 are 1px tighter than Figma's rounding; they
+  stay centred, so the edges drift ≤4px.
+- **Parts table** drops the last row's hairline like the other tables; the eye action reuses the 32px
+  surface chip.
+
 ## Suppliers, Knowledge & Analytics (Figma section 7)
 
 - **`?empty` seam**: the approved list has no designed delete action, so the "No Suppliers Yet"

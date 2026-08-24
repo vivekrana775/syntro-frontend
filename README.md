@@ -43,6 +43,7 @@ Requires Node ≥ 20. Fonts (Manrope, Inter) load from Google Fonts.
 | `/library`                      | —                                           | Redirects to `/library/bom`                                                                                                                                                                                          |
 | `/library/bom`                  | `1:19147` No data, `1:18704`, `1:18915`     | Flat, folder-grouped or empty (all local state); New/Rename/Move/Delete folder dialogs (`1:24930`, `1:24181`, `1:25157`, `1:24667`) and the Upload → Map Columns → Uploaded wizard (`1:23642`, `1:23877`, `1:24409`) |
 | `/library/bom/:bomId`           | `1:19321` Tree, `1:19586` Table             | `?tab=tree` (default) or `table`; unknown ids redirect to the list                                                                                                                                                   |
+| `/library/parts`                | `1:20800` Parts, `1:20638` No data          | Filter (`1:21680`) and part detail (`1:21214`, assign form `1:21452`) dialogs; `?empty` seeds the no-data view                                                                                                       |
 | `/library/suppliers`            | —                                           | Redirects to `/library/suppliers/approved`                                                                                                                                                                           |
 | `/library/suppliers/approved`   | `1:21702` Approved, `1:21926` No data       | Filter (`1:22102`), New Supplier (`1:25396`) and supplier detail (`1:25660`, full view `1:26137`) dialogs; `?empty` seeds the no-data view                                                                           |
 | `/library/suppliers/discovered` | `1:22377` Discovered                        | Explainer + Refresh, view toggles, "All caught up." state                                                                                                                                                            |
@@ -66,6 +67,7 @@ src/
     action-queue/  Needs You list, Team table, RFQ routing and escalation details
     sources/    Sources list, opened email and the "Skipped by agent" panel
     bom/        BOM library table, folder groups and menus, assembly tree, parts table, folder/move/delete/upload dialogs
+    parts/      Parts library table, filter dialog, part detail dialog and incumbent form
   pages/        One folder per route; the only place mocks are imported
   hooks/        useDisclosure, useTabParam (`?tab=` state)
   lib/          cn(), route constants and path builders, review helpers (pager, lookups)
@@ -109,7 +111,7 @@ Components are presentational; all data enters through props from the page conta
 
 1. Replace the fixtures imported in `src/pages/*` (`@/mocks`) with fetched data shaped like the
    interfaces in `src/types` (`DashboardData`, `User`, `NavEntry[]`, `Project[]`, `BomsData`,
-   `BomDetail`, `UploadPreview`, `SuppliersData`, `KnowledgeData`).
+   `BomDetail`, `UploadPreview`, `PartsData`, `SuppliersData`, `KnowledgeData`).
 2. Implement the handlers marked `// TODO(api):`
    - `src/pages/sign-in/SignInPage.tsx` — `handleSubmit`, `handleSocial`, `handleForgotPassword`
    - `src/pages/sign-up/SignUpPage.tsx` — same three handlers
@@ -125,6 +127,8 @@ Components are presentational; all data enters through props from the page conta
      dispatch to the local `bomLibraryReducer`, which is the seam to replace with API calls
    - `src/pages/bom/BomDetailPage.tsx` — `handleContinue`, `handleUploadComplete`, `handleStartRfq`,
      `handleViewPart`
+   - `src/pages/parts/PartsPage.tsx` — `handleContinue`; `handleAssignIncumbent` dispatches to the
+     local `partsReducer`, which is the seam to replace with API calls
    - `src/pages/suppliers/SuppliersPage.tsx` — `handleContinue`, `handleMerge`, `handleRefresh`;
      `handleCreateSupplier`, `handleSaveSupplier` and `handleSaveVendorId` dispatch to the local
      `suppliersReducer`, which is the seam to replace with API calls

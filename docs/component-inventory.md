@@ -57,6 +57,10 @@ card, 1:26185); `Icon` gains `chart` (Insights › Analytics nav, 1:23600); the 
 (#3D3936 — supplier names, 1:21821). `TagInput` and `ChipMultiSelect` stay feature-scoped in
 `src/components/suppliers` until a second feature needs them.
 
+Additions for the Parts screen: no new primitives — `tailwind.config.ts` gains the `part-table` width and
+the `col-part-*` column widths (1:20920); the screen composes `PageHeading`, `SearchInput`,
+`IconButton`, `Select`, `Input`, `FormField`, `Divider`, `EmptyState` and the dialog primitives as-is.
+
 ## Layout — `src/components/layout`
 
 | Component        | File                 | Figma refs               | Notes                                                                                              |
@@ -138,3 +142,8 @@ card, 1:26185); `Icon` gains `chart` (Insights › Analytics nav, 1:23600); the 
 | `DiscoveredPanel`                     | `suppliers/DiscoveredPanel.tsx`                                                      | 1:22486, 1:22497, 1:22506                      |
 | `ReconcilePanel` / `MissingInfoRow`   | `suppliers/ReconcilePanel.tsx`, `MissingInfoRow.tsx`                                 | 1:22631, 1:22658, 1:22699 (inline chip row)    |
 | `KnowledgeTable`                      | `knowledge/KnowledgeTable.tsx`                                                       | 1:23511                                        |
+| `PartsLibraryToolbar`                 | `parts/PartsLibraryToolbar.tsx`                                                      | 1:20912, 1:20916                               |
+| `PartsLibraryTable`                   | `parts/PartsLibraryTable.tsx`                                                        | 1:20919 (56px rows)                            |
+| `PartsLibraryEmptyState`              | `parts/PartsLibraryEmptyState.tsx`                                                   | 1:20763                                        |
+| `PartsFilterDialog`                   | `parts/PartsFilterDialog.tsx`                                                        | 1:21680                                        |
+| `PartDetailDialog` / `IncumbentForm`  | `parts/PartDetailDialog.tsx`, `IncumbentForm.tsx`                                    | 1:21214 read, 1:21452 assign form              |
