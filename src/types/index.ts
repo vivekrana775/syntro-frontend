@@ -36,6 +36,12 @@ export type {
 } from './dashboard';
 export { ICON_NAMES, type IconName } from './icon';
 export {
+  KNOWLEDGE_CATEGORY,
+  type KnowledgeCategory,
+  type KnowledgeData,
+  type KnowledgeMemory,
+} from './knowledge';
+export {
   isNavGroup,
   type BreadcrumbItem,
   type NavEntry,

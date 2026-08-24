@@ -2,8 +2,10 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import { ROUTE_PATTERNS, ROUTES } from '@/lib/constants';
 import { ActionQueuePage } from '@/pages/action-queue';
+import { AnalyticsPage } from '@/pages/analytics';
 import { BomDetailPage, BomLibraryPage } from '@/pages/bom';
 import { DashboardPage } from '@/pages/dashboard';
+import { KnowledgePage } from '@/pages/knowledge';
 import { PurchaseOrdersPage } from '@/pages/purchase-orders';
 import { SignInPage } from '@/pages/sign-in';
 import { SignUpPage } from '@/pages/sign-up';
@@ -32,5 +34,8 @@ export const router = createBrowserRouter([
   { path: ROUTES.suppliersApproved, element: <SuppliersPage tab="approved" /> },
   { path: ROUTES.suppliersDiscovered, element: <SuppliersPage tab="discovered" /> },
   { path: ROUTES.suppliersReconcile, element: <SuppliersPage tab="reconcile" /> },
+  { path: ROUTES.knowledge, element: <KnowledgePage /> },
+  { path: ROUTES.insights, element: <Navigate to={ROUTES.analytics} replace /> },
+  { path: ROUTES.analytics, element: <AnalyticsPage /> },
   { path: '*', element: <Navigate to={ROUTES.signIn} replace /> },
 ]);

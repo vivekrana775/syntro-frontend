@@ -1,6 +1,7 @@
 export { actionQueue } from './action-queue';
 export { bomDetails, bomLibrary, getBomDetail, uploadPreview } from './bom';
 export { dashboard } from './dashboard';
+export { knowledge } from './knowledge';
 export { navigation } from './navigation';
 export { projects } from './projects';
 export { sources } from './sources';
