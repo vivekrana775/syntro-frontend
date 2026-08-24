@@ -13,6 +13,8 @@ const iconButtonVariants = cva(
         surface: 'bg-surface text-graphite hover:bg-hatch',
         outline: 'border border-subtle bg-transparent text-graphite hover:bg-paper',
         graphite: 'bg-graphite text-paper hover:bg-graphite/90',
+        // contact row actions on a neutral card (1:26185)
+        white: 'bg-white text-graphite hover:bg-neutral',
         facebook: 'bg-facebook text-paper hover:bg-facebook/90',
         plain: 'bg-transparent text-graphite hover:bg-paper',
       },

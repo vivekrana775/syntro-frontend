@@ -25,6 +25,8 @@ const dialogContentVariants = cva(
         sm: 'max-w-modal-sm',
         md: 'max-w-modal-md',
         lg: 'max-w-modal-lg',
+        // New Supplier dialog (1:25607)
+        wide: 'max-w-modal-wide',
         xl: 'max-w-modal-xl',
       },
     },

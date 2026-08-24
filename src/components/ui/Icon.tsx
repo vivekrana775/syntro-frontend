@@ -14,6 +14,7 @@ import ArrowSwap from '@/assets/icons/arrow-swap.svg?react';
 import ArrowTopRight from '@/assets/icons/arrow-top-right.svg?react';
 import ArrowTop from '@/assets/icons/arrow-top.svg?react';
 import Calendar from '@/assets/icons/calendar.svg?react';
+import Chart from '@/assets/icons/chart.svg?react';
 import CheckDouble from '@/assets/icons/check-double.svg?react';
 import Check from '@/assets/icons/check.svg?react';
 import ChevronLeft from '@/assets/icons/chevron-left.svg?react';
@@ -89,6 +90,7 @@ const registry: Record<IconName, SvgComponent> = {
   'more-vertical': MoreVertical,
   'edit-square': EditSquare,
   'alert-circle': AlertCircle,
+  chart: Chart,
 };
 
 /** Icon sizes used in Figma: 16 (table actions), 18 (nav, search, button trailing), 20 (input addons, row actions), 24 (default). */

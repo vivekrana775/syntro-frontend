@@ -40,6 +40,8 @@ export const ICON_NAMES = [
   'more-vertical',
   'edit-square',
   'alert-circle',
+  // Suppliers, Knowledge & Analytics (1:26718)
+  'chart',
 ] as const;
 
 export type IconName = (typeof ICON_NAMES)[number];

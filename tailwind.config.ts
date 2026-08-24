@@ -71,6 +71,24 @@ const sizes = {
   'col-parts-description': '194px',
   'col-parts-demand': '115px', // the eye action starts at x983
   'dialog-field': '552px', // single field inside a 600px dialog; kept at that width in Map Columns (1:24102)
+  // Suppliers, Knowledge & Analytics (1:26718)
+  'sup-table': '1064px', // approved table (1:21811)
+  // approved table columns (1:21812); header text at x17, body text at x18
+  'col-sup-name': '253px',
+  'col-sup-email': '250px',
+  'col-sup-hq': '76px',
+  'col-sup-status': '97px',
+  'col-sup-notes': '286px',
+  'modal-wide': '800px', // New Supplier dialog (1:25607)
+  'sup-explainer': '802px', // Discovered tab explainer paragraph (1:22487)
+  'sup-vendor-id': '355px', // Reconcile NetSuite Vendor ID field (1:22665)
+  'sup-notes': '162px', // supplier detail Notes box (1:26210)
+  'know-table': '1064px', // knowledge table (1:23511)
+  // knowledge table columns (1:23512); header text at x17, body text at x18
+  'col-know-category': '171px',
+  'col-know-memory': '452px',
+  'col-know-evidence': '128px',
+  'col-know-confidence': '151px',
 };
 
 export default {
@@ -100,6 +118,7 @@ export default {
         sand: channel('--c-sand'),
         facebook: channel('--c-facebook'),
         line: channel('--c-line'),
+        umber: channel('--c-umber'),
         hatch: channel('--c-hatch'),
         // semantic aliases
         page: channel('--bg-page'),
@@ -157,6 +176,7 @@ export default {
         5.75: '23px',
         13: '52px',
         18: '72px', // Map Columns rows (1:24111)
+        21: '84px', // suppliers approved table rows (1:21819)
         6.75: '27px', // assembly tree rows: eye action inset from the row edge (1:19472)
         7.25: '29px', // assembly root row: eye action inset from the box content edge (1:19563)
         8.5: '34px', // assembly root subtitle indent = checkbox 18 + gap 16 (1:19562)

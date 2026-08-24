@@ -4,6 +4,7 @@ export { BarChart, type BarChartProps } from './BarChart';
 export { Button, type ButtonProps } from './Button';
 export { Card, type CardProps } from './Card';
 export { Checkbox, type CheckboxProps } from './Checkbox';
+export { Chip, type ChipProps } from './Chip';
 export {
   Dialog,
   DialogClose,
@@ -26,6 +27,7 @@ export {
   type DropdownMenuContentProps,
   type DropdownMenuItemProps,
 } from './DropdownMenu';
+export { EmptyState, type EmptyStateProps } from './EmptyState';
 export { FileInput, type FileInputProps } from './FileInput';
 export { FormField, type FormFieldProps } from './FormField';
 export { Icon, type IconProps, type IconSize } from './Icon';
@@ -44,4 +46,5 @@ export {
 } from './SegmentedControl';
 export { Select, type SelectOption, type SelectProps } from './Select';
 export { StatCard, type StatCardProps } from './StatCard';
+export { Textarea, type TextareaProps } from './Textarea';
 export { ThemeToggle, type Theme, type ThemeToggleProps } from './ThemeToggle';
