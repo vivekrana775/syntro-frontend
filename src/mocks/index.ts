@@ -5,4 +5,5 @@ export { navigation } from './navigation';
 export { projects } from './projects';
 export { sources } from './sources';
 export { getPurchaseOrderDetail, purchaseOrderDetails, purchaseOrders } from './purchase-orders';
+export { suppliers } from './suppliers';
 export { currentUser } from './user';

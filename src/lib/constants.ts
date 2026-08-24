@@ -12,6 +12,13 @@ export const ROUTES = {
   sources: '/review/sources',
   library: '/library',
   bom: '/library/bom',
+  suppliers: '/library/suppliers',
+  suppliersApproved: '/library/suppliers/approved',
+  suppliersDiscovered: '/library/suppliers/discovered',
+  suppliersReconcile: '/library/suppliers/reconcile',
+  knowledge: '/library/knowledge',
+  insights: '/insights',
+  analytics: '/insights/analytics',
 } as const;
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];

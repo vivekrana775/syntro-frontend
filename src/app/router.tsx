@@ -8,6 +8,7 @@ import { PurchaseOrdersPage } from '@/pages/purchase-orders';
 import { SignInPage } from '@/pages/sign-in';
 import { SignUpPage } from '@/pages/sign-up';
 import { SourcesPage } from '@/pages/sources';
+import { SuppliersPage } from '@/pages/suppliers';
 
 export const router = createBrowserRouter([
   { path: ROUTES.home, element: <Navigate to={ROUTES.signIn} replace /> },
@@ -27,5 +28,9 @@ export const router = createBrowserRouter([
   { path: ROUTES.library, element: <Navigate to={ROUTES.bom} replace /> },
   { path: ROUTES.bom, element: <BomLibraryPage /> },
   { path: ROUTE_PATTERNS.bomDetail, element: <BomDetailPage /> },
+  { path: ROUTES.suppliers, element: <Navigate to={ROUTES.suppliersApproved} replace /> },
+  { path: ROUTES.suppliersApproved, element: <SuppliersPage tab="approved" /> },
+  { path: ROUTES.suppliersDiscovered, element: <SuppliersPage tab="discovered" /> },
+  { path: ROUTES.suppliersReconcile, element: <SuppliersPage tab="reconcile" /> },
   { path: '*', element: <Navigate to={ROUTES.signIn} replace /> },
 ]);

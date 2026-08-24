@@ -51,6 +51,20 @@ export {
   type SourceTab,
 } from './sources';
 export {
+  SUPPLIER_STATUS,
+  SUPPLIERS_TABS,
+  type ReconcileGap,
+  type Supplier,
+  type SupplierActivity,
+  type SupplierContact,
+  type SupplierFilterOptions,
+  type SupplierPart,
+  type SuppliersData,
+  type SuppliersTab,
+  type SuppliersTabMeta,
+  type SupplierStatus,
+} from './suppliers';
+export {
   PURCHASE_ORDER_FACT_KEYS,
   PURCHASE_ORDER_FACT_LABELS,
   TRACKER_OWNER,
