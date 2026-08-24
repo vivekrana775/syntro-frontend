@@ -148,3 +148,39 @@ These colours were not changed; fix them in `src/styles/tokens.css` if the desig
 - **Responsive**: the library, parts and mapping tables and the tree box keep their Figma columns and
   scroll horizontally inside their cards / dialog below ~1100px; header rows wrap; dialog widths are
   capped by the viewport.
+
+## Suppliers, Knowledge & Analytics (Figma section 7)
+
+- **`?empty` seam**: the approved list has no designed delete action, so the "No Suppliers Yet"
+  view (1:21926) is reached by seeding the page's reducer empty via
+  `/library/suppliers/approved?empty`; both states render from one code path (subtitle and tab
+  counts derive from state).
+- **Undrawn rows**: the frame's "14 suppliers" draws seven rows; rows 8–14 reuse vendor names from
+  the other sections' mocks (Meridian CNC, Nova Electronics, Talon Precision, …) with the designed
+  notes text repeated. Detail data beyond Bolt & Fastener Co is synthesised (empty contacts and
+  parts, "-" activity facts).
+- **New Supplier subtitle** keeps Figma's copy verbatim ("Create a project, then add quotes by
+  importing emails…"), evidently pasted from another dialog — design-as-is, not a deviation.
+- **Two notes fields**: Figma gives Bolt & Fastener "Type-II/III anodize and passivation" in the
+  table's Notes column but "Commodity fasteners, same-week ship." in the detail dialog, so
+  `Supplier` carries separate `notes` / `detailNotes`.
+- **Typing state**: the detail Tags field draws "Fastener" mid-typing with a caret (1:26166); the
+  app opens with the committed chip only and the screenshot script types the text before capturing.
+- **Filter dialog** opens with the designed chips selected (Active / Unverified, Fasteners /
+  Machines); Apply filters strictly (status AND tag intersection), so the designed tag chips —
+  which no supplier carries — empty the table until removed. The chevron menus reuse the undesigned
+  Select dropdown chrome.
+- **Reconcile**: the fifth designed Missing-Info row repeats Apex Anodize with the chip drawn
+  beside the name instead of below it (1:22699) — reproduced via `ReconcileGap.layout`. Save
+  resolves a row locally; Merge is a `TODO(api)` no-op (the merged result is not designed); the tab
+  count stays (00) as drawn even though five rows are listed.
+- **Discovered**: the "All caught up." copy centres on the whole card (1:22506), so it overlays the
+  panel absolutely; Refresh is a `TODO(api)` no-op.
+- **Dialog scrolling**: the detail dialog's full layout (1:26137) is 1227px tall and scrolls inside
+  the 1024 viewport; "Add another email" appends plain email inputs (only one is drawn).
+- **Backdrop artifact**: Figma draws the New Supplier and detail dialogs over a Quotes page; both
+  open over the Suppliers page.
+- **Suppliers table** drops the last row's hairline like the other tables (the frame clips
+  mid-row, so the closed state is assumed); the eye action reuses the 32px surface chip.
+- **Knowledge** keeps the designed "6 memories" subtitle although five rows are drawn; memory text
+  keeps the literal trailing "..." from the frames.
