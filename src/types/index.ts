@@ -48,6 +48,18 @@ export {
   type NavGroup,
   type NavLeaf,
 } from './navigation';
+export {
+  PURCHASE_HISTORY_FILTERS,
+  PURCHASE_HISTORY_LABEL,
+  TOOLING_OWNER_LABEL,
+  TOOLING_OWNERS,
+  type Part,
+  type PartHistoryEntry,
+  type PartIncumbent,
+  type PartsData,
+  type PurchaseHistoryFilter,
+  type ToolingOwner,
+} from './parts';
 export type { EmailBodyData, EmailSender } from './review';
 export {
   SOURCE_TABS,

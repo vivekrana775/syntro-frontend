@@ -3,6 +3,7 @@ export { bomDetails, bomLibrary, getBomDetail, uploadPreview } from './bom';
 export { dashboard } from './dashboard';
 export { knowledge } from './knowledge';
 export { navigation } from './navigation';
+export { parts } from './parts';
 export { projects } from './projects';
 export { sources } from './sources';
 export { getPurchaseOrderDetail, purchaseOrderDetails, purchaseOrders } from './purchase-orders';
