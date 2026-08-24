@@ -89,6 +89,14 @@ const sizes = {
   'col-know-memory': '452px',
   'col-know-evidence': '128px',
   'col-know-confidence': '151px',
+  // Parts (1:26717)
+  'part-table': '1064px', // parts library table (1:20919)
+  // parts library table columns (1:20920); text at x 18 / 233 / 582 / 827 with 18px cell padding, the
+  // eye action starts at x960 and Actions takes the remaining 122px (`col-parts-*` above is the BOM detail table)
+  'col-part-number': '215px',
+  'col-part-description': '349px',
+  'col-part-supplier': '245px',
+  'col-part-paid': '133px',
 };
 
 export default {
