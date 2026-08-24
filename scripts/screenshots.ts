@@ -20,6 +20,9 @@ const RESPONSIVE_ROUTES = [
   { path: 'review/sources/src-nova', name: 'sources-detail' },
   { path: 'library/bom', name: 'bom' },
   { path: 'library/bom/bom-robot-100-evt', name: 'bom-detail' },
+  { path: 'library/suppliers/approved', name: 'suppliers-approved' },
+  { path: 'library/knowledge', name: 'knowledge' },
+  { path: 'insights/analytics', name: 'analytics' },
 ];
 
 async function shoot(page: Page, name: string, fullPage = false) {
@@ -188,6 +191,49 @@ async function main() {
     waitUntil: 'networkidle',
   });
   await shoot(page, 'bom-detail-table@1440');
+
+  // Suppliers, Knowledge & Analytics (section 1:26718)
+  await page.goto(`${baseUrl}/library/suppliers/approved`, { waitUntil: 'networkidle' });
+  await shoot(page, 'suppliers-approved@1440');
+  await shoot(page, 'suppliers-approved@1440-full', true);
+
+  await page.getByRole('button', { name: 'Filter suppliers' }).click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'suppliers-filter@1440');
+  await closeDialog();
+
+  await page.getByRole('button', { name: 'New Supplier' }).click();
+  await page.getByRole('dialog').waitFor();
+  await shoot(page, 'suppliers-new@1440');
+  await closeDialog();
+
+  await page.getByRole('button', { name: 'View Bolt & Fastener Co' }).click();
+  await page.getByRole('dialog').waitFor();
+  // The designed frame (1:25660) shows "Fastener" mid-typing in the tag field.
+  await page.getByLabel('Add a tag').fill('Fastener');
+  await shoot(page, 'suppliers-detail@1440');
+  // The dialog scrolls internally; a taller viewport shows the full layout (1:26137).
+  await page.setViewportSize({ width: 1440, height: 1500 });
+  await shoot(page, 'suppliers-detail@1440-full');
+  await page.setViewportSize(DESKTOP);
+  await closeDialog();
+
+  // The empty state (1:21926) is seeded through the `?empty` search param.
+  await page.goto(`${baseUrl}/library/suppliers/approved?empty`, { waitUntil: 'networkidle' });
+  await shoot(page, 'suppliers-empty@1440');
+
+  await page.goto(`${baseUrl}/library/suppliers/discovered`, { waitUntil: 'networkidle' });
+  await shoot(page, 'suppliers-discovered@1440');
+
+  await page.goto(`${baseUrl}/library/suppliers/reconcile`, { waitUntil: 'networkidle' });
+  await shoot(page, 'suppliers-reconcile@1440');
+  await shoot(page, 'suppliers-reconcile@1440-full', true);
+
+  await page.goto(`${baseUrl}/library/knowledge`, { waitUntil: 'networkidle' });
+  await shoot(page, 'knowledge@1440');
+
+  await page.goto(`${baseUrl}/insights/analytics`, { waitUntil: 'networkidle' });
+  await shoot(page, 'analytics@1440');
 
   for (const width of RESPONSIVE_WIDTHS) {
     await page.setViewportSize({ width, height: 1024 });
