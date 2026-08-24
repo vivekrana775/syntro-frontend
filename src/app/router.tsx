@@ -6,6 +6,7 @@ import { AnalyticsPage } from '@/pages/analytics';
 import { BomDetailPage, BomLibraryPage } from '@/pages/bom';
 import { DashboardPage } from '@/pages/dashboard';
 import { KnowledgePage } from '@/pages/knowledge';
+import { PartsPage } from '@/pages/parts';
 import { PurchaseOrdersPage } from '@/pages/purchase-orders';
 import { SignInPage } from '@/pages/sign-in';
 import { SignUpPage } from '@/pages/sign-up';
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
   { path: ROUTES.library, element: <Navigate to={ROUTES.bom} replace /> },
   { path: ROUTES.bom, element: <BomLibraryPage /> },
   { path: ROUTE_PATTERNS.bomDetail, element: <BomDetailPage /> },
+  { path: ROUTES.parts, element: <PartsPage /> },
   { path: ROUTES.suppliers, element: <Navigate to={ROUTES.suppliersApproved} replace /> },
   { path: ROUTES.suppliersApproved, element: <SuppliersPage tab="approved" /> },
   { path: ROUTES.suppliersDiscovered, element: <SuppliersPage tab="discovered" /> },

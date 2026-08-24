@@ -12,6 +12,7 @@ export const ROUTES = {
   sources: '/review/sources',
   library: '/library',
   bom: '/library/bom',
+  parts: '/library/parts',
   suppliers: '/library/suppliers',
   suppliersApproved: '/library/suppliers/approved',
   suppliersDiscovered: '/library/suppliers/discovered',

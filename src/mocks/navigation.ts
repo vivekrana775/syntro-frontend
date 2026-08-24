@@ -34,7 +34,7 @@ export const navigation: NavEntry[] = [
     icon: 'document',
     children: [
       { id: 'bom', label: 'BOM', icon: 'sort', to: ROUTES.bom },
-      { id: 'parts', label: 'Parts', icon: 'arrow-swap' },
+      { id: 'parts', label: 'Parts', icon: 'arrow-swap', to: ROUTES.parts },
       { id: 'suppliers', label: 'Suppliers', icon: 'note', to: ROUTES.suppliers },
       { id: 'knowledge', label: 'Knowledge', icon: 'rotate-right', to: ROUTES.knowledge },
     ],
